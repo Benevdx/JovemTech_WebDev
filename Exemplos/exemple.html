@@ -1,137 +1,137 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <!-- Metadados -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Exemplo de HTML completo">
-    <title>Exemplo HTML</title>
+	<head>
+		<!-- Metadados -->
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Exemplo de HTML completo" />
+		<title>Exemplo HTML</title>
 
-    <!-- Estilo interno -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        header, footer {
-            background: #f2f2f2;
-            padding: 10px;
-        }
-        nav a {
-            margin-right: 10px;
-        }
-    </style>
-</head>
-<body>
+		<!-- Estilo interno -->
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 20px;
+			}
+			header,
+			footer {
+				background: #ffffff;
+				padding: 10px;
+			}
+			nav a {
+				margin-right: 10px;
+				color: rgb(233, 0, 0);
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Cabeçalho -->
+		<header>
+			<h1>Meu Site, por Benevides</h1>
+			<nav>
+				<a href="">Início</a>
+				<a href="#">Sobre</a>
+				<a href="#">Contato</a>
+				<a href="https://github.com/Benevdx/JovemTech_WebDev">GitHub</a>
+			</nav>
+		</header>
 
-    <!-- Cabeçalho -->
-    <header>
-        <h1>Meu Site</h1>
-        <nav>
-            <a href="#">Início</a>
-            <a href="#">Sobre</a>
-            <a href="#">Contato</a>
-        </nav>
-    </header>
+		<!-- Conteúdo principal -->
+		<main>
+			<!-- Seção -->
+			<section>
+				<h2>Seção de Texto</h2>
+				<p>Este é um parágrafo com <strong>negrito</strong> e <em>itálico</em>.</p>
+			</section>
 
-    <!-- Conteúdo principal -->
-    <main>
+			<!-- Artigo -->
+			<article>
+				<h2>Artigo</h2>
+				<p>Conteúdo de um artigo independente.</p>
+			</article>
 
-        <!-- Seção -->
-        <section>
-            <h2>Seção de Texto</h2>
-            <p>Este é um parágrafo com <strong>negrito</strong> e <em>itálico</em>.</p>
-        </section>
+			<!-- Listas -->
+			<section>
+				<h2>Listas</h2>
+				<ul>
+					<li>Item não ordenado 1</li>
+					<li>Item não ordenado 2</li>
+				</ul>
 
-        <!-- Artigo -->
-        <article>
-            <h2>Artigo</h2>
-            <p>Conteúdo de um artigo independente.</p>
-        </article>
+				<ol>
+					<li>Item ordenado 1</li>
+					<li>Item ordenado 2</li>
+					<li>Item não ordenado 3</li>
+				</ol>
+			</section>
 
-        <!-- Listas -->
-        <section>
-            <h2>Listas</h2>
-            <ul>
-                <li>Item não ordenado 1</li>
-                <li>Item não ordenado 2</li>
-            </ul>
+			<!-- Imagem -->
+			<section>
+				<h2>Imagem</h2>
+				<img src="" alt="Imagem de exemplo" />
+			</section>
 
-            <ol>
-                <li>Item ordenado 1</li>
-                <li>Item ordenado 2</li>
-            </ol>
-        </section>
+			<!-- Link -->
+			<section>
+				<h2>Link</h2>
+				<a href="https://www.google.com" target="_blank">Ir para o Google</a>
+			</section>
 
-        <!-- Imagem -->
-        <section>
-            <h2>Imagem</h2>
-            <img src="https://via.placeholder.com/150" alt="Imagem de exemplo">
-        </section>
+			<!-- Tabela -->
+			<section>
+				<h2>Tabela</h2>
+				<table border="1">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Idade</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Ana</td>
+							<td>25</td>
+						</tr>
+						<tr>
+							<td>Carlos</td>
+							<td>30</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
 
-        <!-- Link -->
-        <section>
-            <h2>Link</h2>
-            <a href="https://www.google.com" target="_blank">Ir para o Google</a>
-        </section>
+			<!-- Formulário -->
+			<section>
+				<h2>Formulário</h2>
+				<form action="#" method="post">
+					<label for="nome">Nome:</label><br />
+					<input type="text" id="nome" name="nome" /><br /><br />
 
-        <!-- Tabela -->
-        <section>
-            <h2>Tabela</h2>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Idade</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Ana</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <td>Carlos</td>
-                        <td>30</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+					<label for="email">Email:</label><br />
+					<input type="email" id="email" name="email" /><br /><br />
 
-        <!-- Formulário -->
-        <section>
-            <h2>Formulário</h2>
-            <form action="#" method="post">
-                <label for="nome">Nome:</label><br>
-                <input type="text" id="nome" name="nome"><br><br>
+					<label for="mensagem">Mensagem:</label><br />
+					<textarea id="mensagem" name="mensagem"></textarea><br /><br />
 
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email"><br><br>
+					<button type="submit">Enviar</button>
+				</form>
+			</section>
+		</main>
 
-                <label for="mensagem">Mensagem:</label><br>
-                <textarea id="mensagem" name="mensagem"></textarea><br><br>
+		<!-- Barra lateral -->
+		<aside>
+			<h3>Barra lateral</h3>
+			<p>Conteúdo adicional.</p>
+		</aside>
 
-                <button type="submit">Enviar</button>
-            </form>
-        </section>
+		<!-- Rodapé -->
+		<footer>
+			<p>&copy; 2026 Meu Site</p>
+		</footer>
 
-    </main>
-
-    <!-- Barra lateral -->
-    <aside>
-        <h3>Barra lateral</h3>
-        <p>Conteúdo adicional.</p>
-    </aside>
-
-    <!-- Rodapé -->
-    <footer>
-        <p>&copy; 2026 Meu Site</p>
-    </footer>
-
-    <!-- Script -->
-    <script>
-        console.log("Página carregada!");
-    </script>
-
-</body>
+		<!-- Script -->
+		<script>
+			console.log("Página carregada!");
+		</script>
+	</body>
 </html>
