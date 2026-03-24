@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Exemplo de Formulários</title>
+	</head>
+	<body>
+		<h1>Formulário Completo em HTML</h1>
+
+		<!-- FORMULÁRIO -->
+		<form action="#" method="post">
+			<!-- ========================= -->
+			<!-- INPUT TEXTO -->
+			<!-- ========================= -->
+			<h2>Dados Básicos</h2>
+
+			<label for="nome">Nome:</label><br />
+			<input
+				type="text"
+				id="nome"
+				name="nome"
+				placeholder="Digite seu nome"
+				required
+			/><br /><br />
+
+			<label for="email">Email:</label><br />
+			<input
+				type="email"
+				id="email"
+				name="email"
+				placeholder="exemplo@email.com"
+				required
+			/><br /><br />
+
+			<label for="senha">Senha:</label><br />
+			<input type="password" id="senha" name="senha" /><br /><br />
+
+			<!-- ========================= -->
+			<!-- INPUT NUMBER -->
+			<!-- ========================= -->
+			<label for="idade">Idade:</label><br />
+			<input type="number" id="idade" name="idade" min="0" max="120" /><br /><br />
+
+			<!-- ========================= -->
+			<!-- INPUT DATE -->
+			<!-- ========================= -->
+			<label for="nascimento">Data de nascimento:</label><br />
+			<input type="date" id="nascimento" name="nascimento" /><br /><br />
+
+			<!-- ========================= -->
+			<!-- RADIO BUTTON -->
+			<!-- ========================= -->
+			<h2>Gênero</h2>
+
+			<input type="radio" id="masc" name="genero" value="masculino" />
+			<label for="masc">Masculino</label><br />
+
+			<input type="radio" id="fem" name="genero" value="feminino" />
+			<label for="fem">Feminino</label><br />
+
+			<input type="radio" id="outro" name="genero" value="outro" />
+			<label for="outro">Outro</label><br /><br />
+
+			<!-- ========================= -->
+			<!-- CHECKBOX -->
+			<!-- ========================= -->
+			<h2>Interesses</h2>
+
+			<input type="checkbox" id="html" name="interesses" value="html" />
+			<label for="html">HTML</label><br />
+
+			<input type="checkbox" id="css" name="interesses" value="css" />
+			<label for="css">CSS</label><br />
+
+			<input type="checkbox" id="js" name="interesses" value="js" />
+			<label for="js">JavaScript</label><br /><br />
+
+			<!-- ========================= -->
+			<!-- SELECT -->
+			<!-- ========================= -->
+			<h2>Curso</h2>
+
+			<label for="curso">Escolha um curso:</label><br />
+			<select id="curso" name="curso">
+				<option value="">--Selecione--</option>
+				<option value="computacao">Computação</option>
+				<option value="engenharia">Engenharia</option>
+				<option value="direito">Direito</option></select
+			><br /><br />
+
+			<!-- ========================= -->
+			<!-- TEXTAREA -->
+			<!-- ========================= -->
+			<h2>Mensagem</h2>
+
+			<label for="mensagem">Comentário:</label><br />
+			<textarea id="mensagem" name="mensagem" rows="4" cols="40"></textarea><br /><br />
+
+			<!-- ========================= -->
+			<!-- INPUT FILE -->
+			<!-- ========================= -->
+			<h2>Upload de Arquivo</h2>
+
+			<input type="file" name="arquivo" /><br /><br />
+
+			<!-- ========================= -->
+			<!-- INPUT RANGE -->
+			<!-- ========================= -->
+			<h2>Nível de Satisfação</h2>
+
+			<input type="range" name="satisfacao" min="0" max="10" /><br /><br />
+
+			<!-- ========================= -->
+			<!-- INPUT COLOR -->
+			<!-- ========================= -->
+			<h2>Escolha uma cor</h2>
+
+			<input type="color" name="cor" /><br /><br />
+
+			<!-- ========================= -->
+			<!-- BOTÕES -->
+			<!-- ========================= -->
+			<h2>Ações</h2>
+
+			<button type="submit">Enviar</button>
+			<button type="reset">Limpar</button>
+			<button type="button" onclick="location.reload()">Clique</button>
+		</form>
+	</body>
+</html>
