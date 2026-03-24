@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Exemplo de Listas e Tabelas</title>
+	</head>
+	<body>
+		<!-- ========================= -->
+		<!-- TÍTULO -->
+		<!-- ========================= -->
+		<h1>Exemplos de Listas e Tabelas em HTML</h1>
+		<h2>Por Benevides</h2>
+		<h3>Jovem Tech Web Dev</h3>
+		<h4>2026</h4>
+		<h5>texto exemplo</h5>
+
+		<p>Este é um e <b> exemplo </b>de página <strong>com listas e tabelas</strong>.</p>
+
+		<!-- ========================= -->
+		<!-- LISTA NÃO ORDENADA -->
+		<!-- ========================= -->
+		<h2>Lista Não Ordenada (ul)</h2>
+		<p>Usada quando a ordem dos itens não importa:</p>
+
+		<ul>
+			<li>Maçã</li>
+			<li>Banana</li>
+			<li>Laranja</li>
+		</ul>
+
+		<!-- ========================= -->
+		<!-- LISTA ORDENADA -->
+		<!-- ========================= -->
+		<h2>Lista Ordenada (ol)</h2>
+		<p>Usada quando a ordem é importante:</p>
+
+		<ol>
+			<li>Acordar</li>
+			<li>Tomar café</li>
+			<li>Estudar</li>
+		</ol>
+
+		<!-- Lista ordenada com atributos -->
+		<h3>Lista Ordenada com atributos</h3>
+		<ol type="A" start="4">
+			<li>Item C</li>
+			<li>Item D</li>
+			<li>Item E</li>
+			<li>Item F</li>
+		</ol>
+
+		<!-- ========================= -->
+		<!-- LISTA DE DEFINIÇÃO -->
+		<!-- ========================= -->
+		<h2>Lista de Definição (dl)</h2>
+		<p>Usada para termos e descrições:</p>
+
+		<dl>
+			<dt>HTML</dt>
+			<dd>Linguagem de marcação para criação de páginas web</dd>
+			<dd>Permite estruturar conteúdo com elementos semânticos</dd>
+			<dt>CSS</dt>
+			<dd>Responsável pelo estilo das páginas</dd>
+
+			<dt>JavaScript</dt>
+			<dd>Linguagem de programação para interatividade</dd>
+		</dl>
+
+		<!-- ========================= -->
+		<!-- LISTA ANINHADA -->
+		<!-- ========================= -->
+		<h2>Lista Aninhada</h2>
+
+		<ul>
+			<li>
+				Frutas
+				<ul>
+					<li>Maçã</li>
+					<li>Banana</li>
+				</ul>
+			</li>
+			<li>
+				Legumes
+				<ul>
+					<li>Cenoura</li>
+					<li>Batata</li>
+				</ul>
+			</li>
+		</ul>
+
+		<!-- ========================= -->
+		<!-- TABELAS -->
+		<!-- ========================= -->
+		<h2>Tabela Simples</h2>
+
+		<table border="1">
+			<tr>
+				<th>Nome</th>
+				<th>Idade</th>
+				<th>Curso</th>
+				<th>Período</th>
+			</tr>
+			<tr>
+				<td>João</td>
+				<td>20</td>
+				<td>Computação</td>
+				<td>Noturno</td>
+			</tr>
+			<tr>
+				<td>Maria</td>
+				<td>22</td>
+				<td>Engenharia</td>
+				<td>Matutino</td>
+			</tr>
+			<tr>
+				<td>Pedro</td>
+				<td>21</td>
+				<td>Design</td>
+				<td>Vespertino</td>
+			</tr>
+		</table>
+
+		<!-- ========================= -->
+		<!-- TABELA SEMÂNTICA -->
+		<!-- ========================= -->
+		<h2>Tabela com Estrutura Semântica</h2>
+
+		<table border="1">
+			<caption>
+				Alunos e Notas
+			</caption>
+
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Nota</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>Ana</td>
+					<td>9.5</td>
+				</tr>
+				<tr>
+					<td>Carlos</td>
+					<td>8.0</td>
+				</tr>
+			</tbody>
+
+			<tfoot>
+				<tr>
+					<td>Média</td>
+					<td>8.75</td>
+				</tr>
+			</tfoot>
+		</table>
+
+		<!-- ========================= -->
+		<!-- TABELA COM MESCLAGEM -->
+		<!-- ========================= -->
+		<h2>Tabela com colspan e rowspan</h2>
+
+		<table border="1">
+			<tr>
+				<th>Nome</th>
+				<th colspan="2">Notas</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Prova 1</td>
+				<td>Prova 2</td>
+			</tr>
+			<tr>
+				<td rowspan="2">Lucas</td>
+				<td>7.0</td>
+				<td>8.0</td>
+			</tr>
+			<tr>
+				<td>6.5</td>
+				<td>7.5</td>
+			</tr>
+		</table>
+	</body>
+</html>
