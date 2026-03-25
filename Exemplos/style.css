@@ -1,0 +1,239 @@
+/* ========================= */
+/* RESET BÁSICO */
+/* ========================= */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* ========================= */
+/* SELETOR DE ELEMENTO */
+/* ========================= */
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f5f5f5;
+	color: #333;
+}
+
+/* ========================= */
+/* CLASSES SIMPLES */
+/* ========================= */
+.titulo {
+	font-size: 28px;
+	color: #2c3e50;
+}
+
+.texto {
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+/* ========================= */
+/* ID */
+/* ========================= */
+#principal {
+	background-color: #ffffff;
+	padding: 20px;
+}
+
+/* ========================= */
+/* SELETOR DE DESCENDENTE */
+/* ========================= */
+nav ul {
+	list-style: none;
+}
+
+/* ========================= */
+/* SELETOR DE FILHO DIRETO */
+/* ========================= */
+nav > ul > li {
+	display: inline-block;
+	margin-right: 15px;
+}
+
+/* ========================= */
+/* HOVER (INTERAÇÃO) */
+/* ========================= */
+a:hover {
+	color: red;
+	text-decoration: underline;
+}
+
+/* ========================= */
+/* CLASSES MÚLTIPLAS */
+/* ========================= */
+.botao {
+	padding: 10px 20px;
+	border: none;
+	cursor: pointer;
+}
+
+.botao-primario {
+	background-color: #3498db;
+	color: white;
+}
+
+.botao-secundario {
+	background-color: #2ecc71;
+	color: white;
+}
+
+/* ========================= */
+/* BOX MODEL */
+/* ========================= */
+.caixa {
+	width: 200px;
+	height: 100px;
+	padding: 15px;
+	margin: 20px;
+	border: 2px solid black;
+}
+
+/* ========================= */
+/* FLEXBOX */
+/* ========================= */
+.container-flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/* ========================= */
+/* GRID */
+/* ========================= */
+.container-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 10px;
+}
+
+/* ========================= */
+/* POSICIONAMENTO */
+/* ========================= */
+.relativo {
+	position: relative;
+	top: 10px;
+	left: 10px;
+}
+
+.absoluto {
+	position: absolute;
+	top: 50px;
+	right: 20px;
+}
+
+/* ========================= */
+/* TIPOGRAFIA */
+/* ========================= */
+.destaque {
+	font-weight: bold;
+	font-style: italic;
+	text-transform: uppercase;
+}
+
+/* ========================= */
+/* CORES E FUNDO */
+/* ========================= */
+.fundo {
+	background-color: #e74c3c;
+	color: white;
+}
+
+.gradiente {
+	background: linear-gradient(to right, red, yellow);
+}
+
+/* ========================= */
+/* BORDAS */
+/* ========================= */
+.borda-arredondada {
+	border: 2px solid #333;
+	border-radius: 10px;
+}
+
+/* ========================= */
+/* SOMBRA */
+/* ========================= */
+.sombra {
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================= */
+/* OPACIDADE */
+/* ========================= */
+.transparente {
+	opacity: 0.5;
+}
+
+/* ========================= */
+/* DISPLAY */
+/* ========================= */
+.inline {
+	display: inline;
+}
+
+.block {
+	display: block;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+/* ========================= */
+/* VISIBILIDADE */
+/* ========================= */
+.oculto {
+	display: none;
+}
+
+/* ========================= */
+/* TRANSIÇÃO */
+/* ========================= */
+.animacao {
+	transition: all 0.3s ease;
+}
+
+.animacao:hover {
+	transform: scale(1.1);
+}
+
+/* ========================= */
+/* PSEUDO-CLASSES */
+/* ========================= */
+li:first-child {
+	color: blue;
+}
+
+li:last-child {
+	color: green;
+}
+
+li:nth-child(2) {
+	color: red;
+}
+
+/* ========================= */
+/* PSEUDO-ELEMENTOS */
+/* ========================= */
+p::first-letter {
+	font-size: 30px;
+}
+
+p::after {
+	content: " ✔";
+}
+
+/* ========================= */
+/* RESPONSIVIDADE */
+/* ========================= */
+@media (max-width: 768px) {
+	body {
+		background-color: #ddd;
+	}
+
+	.container-grid {
+		grid-template-columns: 1fr;
+	}
+}

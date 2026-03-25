@@ -1,0 +1,262 @@
+/*
+  ✅ GABARITO: styles.css — Esquina do Sabor
+  ============================================
+  CSS completo com comentários explicativos.
+  Estilo: simples, limpo e didático.
+*/
+
+/* ==========================================
+   RESET BÁSICO
+   Remove margens e paddings padrão do navegador
+   para termos um ponto de partida previsível.
+   ========================================== */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box; /* padding não aumenta o tamanho do elemento */
+}
+
+/* ==========================================
+   VARIÁVEIS DE COR
+   Definidas em :root para serem globais.
+   Reutilize com var(--nome-da-variavel) em todo o CSS.
+   ========================================== */
+:root {
+	--cor-primaria: #c0392b; /* vermelho tijolo — quente e apetitoso */
+	--cor-secundaria: #2c3e50; /* azul petróleo escuro — elegante */
+	--cor-fundo: #fafaf8; /* branco levemente creme */
+	--cor-texto: #333333; /* cinza escuro — confortável para leitura */
+	--cor-card: #ffffff; /* branco puro para os cards */
+	--cor-rodape: #2c3e50; /* mesmo do secundário */
+	--sombra-suave: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================
+   CORPO DA PÁGINA
+   Define a fonte e as cores base para toda a página.
+   ========================================== */
+body {
+	font-family: "Lato", sans-serif;
+	background-color: var(--cor-fundo);
+	color: var(--cor-texto);
+	line-height: 1.7; /* espaçamento entre linhas — melhora leitura */
+}
+
+/* ==========================================
+   CABEÇALHO
+   Fundo colorido com texto centralizado.
+   ========================================== */
+header {
+	background-color: var(--cor-primaria);
+	color: #fff;
+	padding: 32px 20px 20px;
+	text-align: center;
+}
+
+header h1 {
+	font-family: "Playfair Display", serif; /* fonte com serifa — sofisticada */
+	font-size: 2.8rem;
+	margin-bottom: 4px;
+}
+
+header > p {
+	font-size: 1rem;
+	opacity: 0.9;
+	margin-bottom: 20px;
+}
+
+/* ==========================================
+   NAVEGAÇÃO
+   Lista horizontal centralizada com Flexbox.
+   ========================================== */
+nav ul {
+	list-style: none; /* remove os marcadores de lista */
+	display: flex; /* coloca os itens lado a lado */
+	justify-content: center; /* centraliza horizontalmente */
+	gap: 8px; /* espaço entre os itens */
+	flex-wrap: wrap; /* quebra linha em telas pequenas */
+}
+
+nav a {
+	text-decoration: none; /* remove o sublinhado padrão */
+	color: #fff;
+	padding: 8px 16px;
+	border-radius: 4px;
+	font-weight: 700;
+	font-size: 0.95rem;
+	transition: background-color 0.2s; /* animação suave no hover */
+}
+
+/* Efeito ao passar o mouse: fundo levemente mais escuro */
+nav a:hover {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================
+   CONTEÚDO PRINCIPAL
+   Limita a largura e centraliza na tela.
+   ========================================== */
+main {
+	max-width: 960px; /* não estica demais em telas largas */
+	margin: 0 auto; /* centraliza horizontalmente */
+	padding: 40px 20px;
+}
+
+/* ==========================================
+   SEÇÕES
+   Separação entre blocos de conteúdo.
+   ========================================== */
+section {
+	margin-bottom: 56px;
+}
+
+/* ==========================================
+   TÍTULOS H2
+   Cor de destaque com linha embaixo decorativa.
+   ========================================== */
+h2 {
+	font-family: "Playfair Display", serif;
+	font-size: 1.9rem;
+	color: var(--cor-secundaria);
+	margin-bottom: 20px;
+	padding-bottom: 8px;
+	border-bottom: 3px solid var(--cor-primaria); /* linha decorativa */
+}
+
+/* ==========================================
+   SEÇÃO DO MENU — LAYOUT GRID
+   Os 3 pratos ficam lado a lado com Grid.
+   Em telas pequenas (abaixo de 600px),
+   o grid vira uma única coluna.
+   ========================================== */
+#menu {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr); /* 3 colunas de tamanho igual */
+	gap: 24px;
+}
+
+/* O h2 do menu ocupa as 3 colunas inteiras */
+#menu h2 {
+	grid-column: 1 / -1;
+}
+
+/* ==========================================
+   CARDS DE PRATO (<article>)
+   ========================================== */
+article {
+	background-color: var(--cor-card);
+	border: 1px solid #e8e8e8;
+	border-radius: 8px;
+	padding: 24px;
+	box-shadow: var(--sombra-suave);
+
+	/* Coluna interna para empurrar o preço para baixo */
+	display: flex;
+	flex-direction: column;
+}
+
+article h3 {
+	font-family: "Playfair Display", serif;
+	font-size: 1.2rem;
+	color: var(--cor-secundaria);
+	margin-bottom: 8px;
+}
+
+article p {
+	font-size: 0.95rem;
+	color: #555;
+	flex: 1; /* ocupa o espaço disponível, empurrando o preço para baixo */
+}
+
+/* Classe especial para o preço */
+.preco {
+	margin-top: 14px;
+	font-weight: 700;
+	font-size: 1.1rem !important;
+	color: var(--cor-primaria) !important;
+	flex: 0 !important; /* não cresce — fica no fim do card */
+}
+
+/* ==========================================
+   FORMULÁRIO DE CONTATO
+   Campos empilhados em coluna com Flexbox.
+   ========================================== */
+form {
+	display: flex;
+	flex-direction: column; /* empilha os elementos verticalmente */
+	gap: 12px;
+	max-width: 560px; /* limita a largura do formulário */
+}
+
+form label {
+	font-weight: 700;
+	font-size: 0.9rem;
+	color: var(--cor-secundaria);
+}
+
+form input,
+form textarea {
+	width: 100%;
+	padding: 10px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	font-family: "Lato", sans-serif;
+	font-size: 1rem;
+	color: var(--cor-texto);
+	transition: border-color 0.2s;
+}
+
+/* Destaque ao clicar no campo */
+form input:focus,
+form textarea:focus {
+	outline: none;
+	border-color: var(--cor-primaria);
+}
+
+form textarea {
+	resize: vertical; /* usuário pode redimensionar apenas verticalmente */
+	min-height: 120px;
+}
+
+form button {
+	align-self: flex-start; /* botão não ocupa largura toda */
+	background-color: var(--cor-primaria);
+	color: #fff;
+	border: none;
+	padding: 12px 32px;
+	border-radius: 6px;
+	font-family: "Lato", sans-serif;
+	font-size: 1rem;
+	font-weight: 700;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+form button:hover {
+	background-color: #a93226; /* tom mais escuro do vermelho */
+}
+
+/* ==========================================
+   RODAPÉ
+   ========================================== */
+footer {
+	background-color: var(--cor-rodape);
+	color: rgba(255, 255, 255, 0.8);
+	text-align: center;
+	padding: 24px 20px;
+	font-size: 0.9rem;
+}
+
+/* ==========================================
+   RESPONSIVIDADE (telas menores que 600px)
+   Os cards do menu viram uma coluna só.
+   ========================================== */
+@media (max-width: 600px) {
+	#menu {
+		grid-template-columns: 1fr;
+	}
+
+	header h1 {
+		font-size: 2rem;
+	}
+}

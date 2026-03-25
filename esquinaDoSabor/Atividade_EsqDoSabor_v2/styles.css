@@ -1,0 +1,179 @@
+/*
+  🎨 EXERCÍCIO: styles.css — Esquina do Sabor
+  ============================================
+  Objetivo: Estilizar a página do restaurante usando CSS.
+
+  Instruções:
+  - Complete cada bloco marcado com TODO.
+  - Não apague os comentários — eles são sua guia!
+  - Teste no navegador sempre que completar um bloco.
+*/
+
+/* ==========================================
+   RESET BÁSICO
+   Zera margens e paddings padrão do navegador.
+   Este bloco já está pronto — não precisa mexer.
+   ========================================== */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* ==========================================
+   TODO 1: VARIÁVEIS DE COR (custom properties)
+   Defina as cores do tema do restaurante.
+   Use nomes que façam sentido!
+
+   Exemplo de como declarar:
+     --cor-nome: #valor;
+
+   Sugestão de variáveis para criar:
+     --cor-primaria   (cor principal, ex: laranja quente)
+     --cor-secundaria (cor de destaque, ex: verde escuro)
+     --cor-fundo      (fundo geral da página, ex: branco)
+     --cor-texto      (cor do texto principal, ex: cinza escuro)
+     --cor-rodape     (fundo do footer)
+   ========================================== */
+:root {
+}
+
+/* ==========================================
+   TODO 2: CORPO DA PÁGINA
+   Aplique ao <body>:
+     - font-family usando a fonte "Lato" (importada no HTML)
+     - cor de fundo usando sua variável --cor-fundo
+     - cor de texto usando sua variável --cor-texto
+   ========================================== */
+body {
+}
+
+/* ==========================================
+   TODO 3: CABEÇALHO (<header>)
+   Estilize o cabeçalho:
+     - background-color com sua cor primária
+     - color branco (#fff)
+     - padding para dar respiro interno (ex: 20px)
+     - text-align centralizado
+   ========================================== */
+header {
+}
+
+/* ==========================================
+   TODO 4: TÍTULO PRINCIPAL (h1 dentro do header)
+   Use a fonte "Playfair Display" e aumente o tamanho.
+   ========================================== */
+header h1 {
+}
+
+/* ==========================================
+   TODO 5: NAVEGAÇÃO (<nav> e seus links)
+   - No <ul>: remova os marcadores (list-style: none)
+              use display: flex e gap para enfileirar os itens
+              justify-content: center para centralizar
+
+   - No <a>: remova o sublinhado (text-decoration: none)
+             cor branca
+             adicione padding para área de clique confortável
+   ========================================== */
+nav ul {
+}
+
+nav a {
+}
+
+/* Efeito ao passar o mouse no link */
+nav a:hover {
+}
+
+/* ==========================================
+   TODO 6: CONTEÚDO PRINCIPAL (<main>)
+   - max-width de ~900px para não esticar demais
+   - margin: 0 auto para centralizar
+   - padding interno
+   ========================================== */
+main {
+}
+
+/* ==========================================
+   TODO 7: SEÇÕES (<section>)
+   - margin-bottom para separar as seções
+   - padding interno
+   ========================================== */
+section {
+}
+
+/* ==========================================
+   TODO 8: TÍTULOS DE SEÇÃO (h2)
+   - cor usando sua variável --cor-secundaria
+   - fonte "Playfair Display"
+   - tamanho e margin-bottom a seu gosto
+   ========================================== */
+h2 {
+}
+
+/* ==========================================
+   TODO 9: CARDS DE PRATO (<article>)
+   Use Flexbox ou Grid para exibir os 3 pratos lado a lado.
+
+   OPÇÃO A — Flexbox no pai (section do menu):
+     display: flex;
+     flex-wrap: wrap;
+     gap: 20px;
+
+   OPÇÃO B — Grid no pai (section do menu):
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 20px;
+
+   Escolha uma e aplique à section#menu.
+   Depois estilize cada <article>:
+     - border ou border-radius
+     - padding
+     - background-color suave
+     - box-shadow opcional
+   ========================================== */
+#menu {
+}
+
+article {
+}
+
+article h3 {
+}
+
+/* ==========================================
+   TODO 10: FORMULÁRIO DE CONTATO
+   - Organize os campos em coluna com Flexbox
+   - Estilize os <input> e <textarea>:
+       border, border-radius, padding, width: 100%
+   - Estilize o <button>:
+       background-color com cor primária
+       color branco
+       padding, border-radius, cursor: pointer
+   ========================================== */
+form {
+}
+
+form label {
+}
+
+form input,
+form textarea {
+}
+
+form button {
+}
+
+form button:hover {
+}
+
+/* ==========================================
+   TODO 11: RODAPÉ (<footer>)
+   - background-color com --cor-rodape
+   - color claro
+   - text-align: center
+   - padding
+   ========================================== */
+footer {
+}

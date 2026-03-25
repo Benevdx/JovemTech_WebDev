@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Esquina do Sabor</title>
+		<link rel="stylesheet" href="styles.css" />
+		<link rel="icon" type="image/x-icon" href="imagens/nicolasCage.png" />
+		<style>
+			h1 {
+				display: flex; /* Alinha os itens lado a lado */
+				list-style: none; /* Remove os pontos da lista */
+				padding: 0;
+				margin: 0;
+				gap: 20px; /* Adiciona espaçamento entre os itens */
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<img
+					height="400"
+					src="imagens/logo.png"
+					alt="Logomarca da Esquina do Sabor"
+					id="logo"
+				/>
+				<br />
+				<ul>
+					<li><a href="#home">Início</a></li>
+					<li><a href="#menu">Menu</a></li>
+					<li><a href="#sobre">Sobre</a></li>
+					<li><a href="#contato">Contato</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main>
+			<section id="home">
+				<h1>Esquina do Sabor</h1>
+				<p>Bem-vindo ao nosso restaurante</p>
+			</section>
+
+			<section id="menu">
+				<h2>Menu</h2>
+				<article>
+					<h3>Prato do Dia</h3>
+					<p>Descrição do prato</p>
+				</article>
+			</section>
+
+			<section id="sobre">
+				<h2>Sobre Nós</h2>
+				<p>Informações sobre o restaurante</p>
+			</section>
+
+			<section id="contato">
+				<h2>Contato</h2>
+				<form>
+					<label for="email">Email:</label>
+					<input type="email" id="email" name="email" />
+					<button type="submit">Enviar</button>
+				</form>
+			</section>
+		</main>
+
+		<footer>
+			<p>&copy; 2024 Esquina do Sabor. Todos os direitos reservados.</p>
+		</footer>
+	</body>
+</html>

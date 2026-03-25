@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--
+  ✅ GABARITO: Esquina do Sabor
+  ================================
+  Este arquivo mostra uma solução completa e bem estruturada.
+  Use para conferir seu trabalho após tentar sozinho!
+-->
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Esquina do Sabor</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Google Fonts: display + corpo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+
+    <!--
+      <header> → identifica o cabeçalho da página.
+      Geralmente contém o nome/logo e a navegação principal.
+    -->
+    <header>
+      <h1>Esquina do Sabor</h1>
+      <p>Sabor de verdade, feito com carinho 🍴</p>
+
+      <!--
+        <nav> → marca um bloco de navegação.
+        <ul>  → lista não-ordenada de links.
+        <li>  → cada item da lista.
+        <a>   → link de navegação com âncora (#id).
+      -->
+      <nav>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!--
+      <main> → conteúdo principal e único da página.
+      Deve haver apenas UM <main> por documento.
+    -->
+    <main>
+
+      <!--
+        <section> → agrupa conteúdo temático relacionado.
+        O atributo id permite que os links da nav funcionem como âncoras.
+      -->
+      <section id="inicio">
+        <h2>Bem-vindo!</h2>
+        <p>
+          Explore nosso cardápio e descubra sabores que aquecem a alma.
+          Aqui cada prato é preparado com ingredientes frescos e muito carinho.
+        </p>
+      </section>
+
+      <!-- Seção do menu com múltiplos pratos -->
+      <section id="menu">
+        <h2>Nosso Menu</h2>
+
+        <!--
+          <article> → conteúdo independente e autossuficiente.
+          Cada prato pode existir por si só — por isso usamos <article>.
+        -->
+        <article>
+          <h3>Frango Grelhado</h3>
+          <p>Filé de frango temperado na brasa, servido com arroz, feijão e salada.</p>
+          <p class="preco">R$ 32,00</p>
+        </article>
+
+        <article>
+          <h3>Moqueca de Peixe</h3>
+          <p>Peixe fresco cozido no leite de coco com pimentões e coentro.</p>
+          <p class="preco">R$ 48,00</p>
+        </article>
+
+        <article>
+          <h3>Salada Tropical</h3>
+          <p>Mix de folhas verdes, manga, tomate-cereja e molho de limão.</p>
+          <p class="preco">R$ 24,00</p>
+        </article>
+      </section>
+
+      <!-- Seção institucional -->
+      <section id="sobre">
+        <h2>Sobre Nós</h2>
+        <p>
+          A Esquina do Sabor nasceu em 2010 de um sonho simples: oferecer comida
+          caseira de qualidade num ambiente acolhedor. Começamos com quatro mesas
+          e hoje somos referência no bairro.
+        </p>
+        <p>
+          Nosso chef utiliza receitas tradicionais passadas de geração em geração,
+          sempre com ingredientes locais e frescos. Venha nos visitar!
+        </p>
+      </section>
+
+      <!-- Seção de contato com formulário -->
+      <section id="contato">
+        <h2>Contato</h2>
+
+        <!--
+          <form> → formulário de contato.
+          Cada campo tem um <label> associado pelo atributo "for"
+          que bate com o "id" do input — importante para acessibilidade!
+        -->
+        <form>
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome completo" />
+
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="seu@email.com" />
+
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem..."></textarea>
+
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
+
+    </main>
+
+    <!--
+      <footer> → rodapé da página.
+      Contém informações de copyright, links legais, redes sociais etc.
+    -->
+    <footer>
+      <p>&copy; 2024 Esquina do Sabor. Todos os direitos reservados.</p>
+    </footer>
+
+  </body>
+</html>

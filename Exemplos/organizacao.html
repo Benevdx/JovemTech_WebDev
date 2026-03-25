@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Estrutura Semântica HTML</title>
+
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+			}
+
+			.container {
+				width: 80%;
+				margin: 0 auto;
+			}
+
+			header,
+			nav,
+			section,
+			article,
+			footer {
+				border: 1px solid #ccc;
+				padding: 10px;
+				margin: 10px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- ========================= -->
+		<!-- CONTAINER (AGRUPADOR GERAL) -->
+		<!-- ========================= -->
+		<div class="container">
+			<!-- 
+            CLASS:
+            Usada para agrupar elementos e aplicar estilos.
+            Pode ser reutilizada em vários elementos.
+        -->
+
+			<!-- ========================= -->
+			<!--          HEADER           -->
+			<!-- ========================= -->
+			<header>
+				<!-- 
+                HEADER:
+                Representa o topo da página ou seção.
+                Geralmente contém título, logo ou introdução.
+            -->
+				<h1>Minha Página Semântica</h1>
+			</header>
+
+			<!-- ========================= -->
+			<!-- NAV -->
+			<!-- ========================= -->
+			<nav>
+				<!-- 
+                NAV:
+                Área de navegação com links principais.
+            -->
+				<ul>
+					<li><a href="#">Início</a></li>
+					<li><a href="#">Sobre</a></li>
+					<li><a href="#">Contato</a></li>
+				</ul>
+			</nav>
+
+			<!-- ========================= -->
+			<!-- MAIN -->
+			<!-- ========================= -->
+			<main>
+				<!-- 
+                MAIN:
+                Conteúdo principal da página.
+            -->
+
+				<!-- ========================= -->
+				<!-- SECTION -->
+				<!-- ========================= -->
+				<section>
+					<!-- 
+                    SECTION:
+                    Agrupa conteúdos relacionados.
+                -->
+					<h2>Seção de Notícias</h2>
+
+					<!-- ========================= -->
+					<!-- ARTICLE -->
+					<!-- ========================= -->
+					<article>
+						<!-- 
+                        ARTICLE:
+                        Conteúdo independente (ex: notícia, post).
+                    -->
+						<h3>Notícia 1</h3>
+						<p>Conteúdo da notícia.</p>
+					</article>
+
+					<article>
+						<h3>Notícia 2</h3>
+						<p>Outro conteúdo independente.</p>
+					</article>
+				</section>
+
+				<!-- ========================= -->
+				<!-- DIV -->
+				<!-- ========================= -->
+				<div>
+					<!-- 
+                    DIV:
+                    Container genérico sem significado semântico.
+                    Usado quando nenhuma outra tag se encaixa.
+                -->
+					<p>Área genérica usando DIV.</p>
+				</div>
+
+				<!-- ========================= -->
+				<!-- ASIDE -->
+				<!-- ========================= -->
+				<aside>
+					<!-- 
+                    ASIDE:
+                    Conteúdo complementar (ex: barra lateral).
+                -->
+					<p>Conteúdo adicional (promoções, links).</p>
+				</aside>
+
+				<!-- ========================= -->
+				<!-- FORM + FIELDSET -->
+				<!-- ========================= -->
+				<form>
+					<!-- 
+                    FORM:
+                    Usado para entrada de dados do usuário.
+                -->
+
+					<fieldset>
+						<!-- 
+                        FIELDSET:
+                        Agrupa campos relacionados dentro do formulário.
+                    -->
+						<legend>Cadastro</legend>
+
+						<label>Nome:</label>
+						<input type="text" /><br /><br />
+
+						<label>Email:</label>
+						<input type="email" />
+					</fieldset>
+				</form>
+			</main>
+
+			<!-- ========================= -->
+			<!-- FOOTER -->
+			<!-- ========================= -->
+			<footer>
+				<!-- 
+                FOOTER:
+                Rodapé da página ou seção.
+            -->
+				<p>&COPY; 2026 - Todos os direitos reservados</p>
+			</footer>
+		</div>
+	</body>
+</html>
