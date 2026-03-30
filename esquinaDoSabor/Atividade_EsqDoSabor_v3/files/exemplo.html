@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+║                    ARQUIVO DE REFERÊNCIA                         ║
+║                                                                  ║
+║  Este arquivo mostra uma solução COMPLETA do exercício.          ║
+║                                                                  ║
+║  ✅ USE para:                                                    ║
+║     → Entender como a estrutura funciona                         ║
+║     → Consultar quando travar em algum TODO                      ║
+║     → Comparar com o que você construiu                          ║
+║                                                                  ║
+║  ❌ NÃO faça:                                                    ║
+║     → Copiar e colar tudo para o index.html                      ║
+║     → Usar como ponto de partida sem tentar antes                ║
+║                                                                  ║
+║  O aprendizado acontece no PROCESSO de construir,                ║
+║  não no resultado final pronto.                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+-->
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+    TÍTULO DA PÁGINA
+    Aparece na aba do navegador.
+    No seu index.html, coloque o nome do seu restaurante aqui.
+  -->
+  <title>Esquina do Sabor — Referência</title>
+
+  <!--
+    ESTILOS DESTE ARQUIVO DE REFERÊNCIA
+    ─────────────────────────────────────
+    Os estilos abaixo estão escritos DENTRO do HTML
+    usando a tag <style>. É o método "CSS interno".
+
+    No seu exercício, você deve fazer diferente:
+    escrever os estilos no arquivo SEPARADO styles.css
+    e linkar com <link rel="stylesheet" href="styles.css" />.
+
+    Aqui usamos o método interno só para que este arquivo
+    funcione de forma independente, sem depender de outros.
+
+    Nos comentários de cada bloco CSS abaixo, explicamos
+    o que cada propriedade faz — leia com atenção!
+  -->
+  <style>
+
+    /* ── Google Fonts importadas via CSS (alternativa ao HTML) ── */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap');
+
+    /* ────────────────────────────────────────────────────────────
+       VARIÁVEIS DE COR (Custom Properties)
+       Definidas em :root para serem globais.
+       Use var(--nome) em qualquer lugar do CSS para reutilizá-las.
+       ──────────────────────────────────────────────────────────── */
+    :root {
+      --cor-primaria:   #c0392b; /* vermelho tijolo — quente e apetitoso */
+      --cor-secundaria: #2c3e50; /* azul petróleo escuro — elegante      */
+      --cor-fundo:      #fafaf8; /* branco levemente creme               */
+      --cor-texto:      #333333; /* cinza escuro — confortável de ler    */
+      --cor-card:       #ffffff; /* branco puro nos cards de prato       */
+      --sombra-suave:   0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       RESET BÁSICO
+       Remove margens e paddings padrão do navegador.
+       box-sizing: border-box faz o padding não somar à largura.
+       ──────────────────────────────────────────────────────────── */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       CORPO DA PÁGINA
+       Define fonte e cores base herdadas por toda a página.
+       ──────────────────────────────────────────────────────────── */
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      line-height: 1.7;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       CABEÇALHO
+       Fundo colorido + texto branco centralizado.
+       padding: 32px 20px → 32px em cima/baixo, 20px nos lados.
+       ──────────────────────────────────────────────────────────── */
+    header {
+      background-color: var(--cor-primaria);
+      color: #ffffff;
+      padding: 32px 20px 20px;
+      text-align: center;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       TÍTULO h1
+       Usa fonte serifada para personalidade.
+       margin-bottom: espaço entre h1 e o slogan.
+       ──────────────────────────────────────────────────────────── */
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      margin-bottom: 4px;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       SLOGAN (parágrafo dentro do header)
+       opacity: 0.9 → levemente transparente para suavizar.
+       ──────────────────────────────────────────────────────────── */
+    header > p {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       NAVEGAÇÃO — lista horizontal com Flexbox
+       list-style: none → remove os pontinhos da lista
+       display: flex    → coloca os itens lado a lado
+       justify-content: center → centraliza horizontalmente
+       gap: 8px         → espaço entre cada item
+       flex-wrap: wrap  → quebra linha em telas pequenas
+       ──────────────────────────────────────────────────────────── */
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       LINKS DA NAVEGAÇÃO
+       text-decoration: none → remove sublinhado padrão
+       padding → cria área de clique confortável
+       transition → anima a mudança ao passar o mouse
+       ──────────────────────────────────────────────────────────── */
+    nav a {
+      text-decoration: none;
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       HOVER DO LINK
+       :hover é uma pseudo-classe — aplica estilo quando o
+       mouse está sobre o elemento.
+       rgba(0,0,0,0.2) → preto com 20% de opacidade.
+       ──────────────────────────────────────────────────────────── */
+    nav a:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       CONTEÚDO PRINCIPAL
+       max-width: limita a largura em telas grandes
+       margin: 0 auto → centraliza horizontalmente
+       padding: espaço interno
+       ──────────────────────────────────────────────────────────── */
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       SEÇÕES
+       margin-bottom: separa uma seção da próxima.
+       ──────────────────────────────────────────────────────────── */
+    section {
+      margin-bottom: 56px;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       TÍTULOS H2
+       border-bottom: linha decorativa embaixo do título.
+       padding-bottom: espaço entre o texto e a linha.
+       ──────────────────────────────────────────────────────────── */
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      color: var(--cor-secundaria);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 3px solid var(--cor-primaria);
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       SEÇÃO DO MENU — CSS GRID
+       display: grid → ativa o layout em grade
+       grid-template-columns: repeat(3, 1fr)
+         → 3 colunas com largura igual (1 fração do espaço total)
+       gap: espaço entre as células da grade
+       ──────────────────────────────────────────────────────────── */
+    #menu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       H2 DENTRO DO MENU
+       grid-column: 1 / -1 → ocupa da coluna 1 até a última,
+       ou seja, a linha inteira — o título fica acima dos cards.
+       ──────────────────────────────────────────────────────────── */
+    #menu h2 {
+      grid-column: 1 / -1;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       CARDS DE PRATO
+       box-shadow: adiciona sombra suave usando nossa variável.
+       display: flex + flex-direction: column → empilha o conteúdo
+       internamente para empurrar o preço para baixo.
+       ──────────────────────────────────────────────────────────── */
+    article {
+      background-color: var(--cor-card);
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: var(--sombra-suave);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       NOME DO PRATO (h3)
+       ──────────────────────────────────────────────────────────── */
+    article h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--cor-secundaria);
+      margin-bottom: 8px;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       DESCRIÇÃO DO PRATO
+       flex: 1 → ocupa o espaço disponível, empurrando
+       o preço para o final do card.
+       ──────────────────────────────────────────────────────────── */
+    article p {
+      font-size: 0.95rem;
+      color: #555555;
+      flex: 1;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       PREÇO DO PRATO
+       A classe .preco é aplicada ao <p class="preco">
+       no HTML. Sobrescreve o estilo de article p acima.
+       margin-top: empurra para baixo dos outros parágrafos.
+       ──────────────────────────────────────────────────────────── */
+    .preco {
+      margin-top: 14px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--cor-primaria);
+      flex: 0;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       FORMULÁRIO — Flexbox em coluna
+       flex-direction: column → empilha label + input + label...
+       gap → espaço entre cada elemento do formulário
+       max-width → limita a largura do formulário
+       ──────────────────────────────────────────────────────────── */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 560px;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       RÓTULOS DOS CAMPOS
+       ──────────────────────────────────────────────────────────── */
+    form label {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--cor-secundaria);
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       CAMPOS DE ENTRADA
+       width: 100% → ocupa toda a largura do formulário
+       font-family → herda a fonte do site (não padrão do sistema)
+       ──────────────────────────────────────────────────────────── */
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #cccccc;
+      border-radius: 6px;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      color: var(--cor-texto);
+      transition: border-color 0.2s;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       CAMPO COM FOCO (quando o usuário clica no campo)
+       :focus é uma pseudo-classe que ativa ao focar no input.
+       outline: none → remove o contorno azul padrão do browser.
+       ──────────────────────────────────────────────────────────── */
+    form input:focus,
+    form textarea:focus {
+      outline: none;
+      border-color: var(--cor-primaria);
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       TEXTAREA (campo de mensagem)
+       resize: vertical → usuário pode redimensionar só na altura.
+       ──────────────────────────────────────────────────────────── */
+    form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       BOTÃO DE ENVIO
+       align-self: flex-start → botão não ocupa a largura toda.
+       cursor: pointer → muda o cursor para "mão" ao passar.
+       border: none → remove a borda padrão do botão.
+       ──────────────────────────────────────────────────────────── */
+    form button {
+      align-self: flex-start;
+      background-color: var(--cor-primaria);
+      color: #ffffff;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 6px;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       BOTÃO — HOVER
+       Tom mais escuro da cor primária para feedback visual.
+       ──────────────────────────────────────────────────────────── */
+    form button:hover {
+      background-color: #a93226;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       RODAPÉ
+       ──────────────────────────────────────────────────────────── */
+    footer {
+      background-color: var(--cor-secundaria);
+      color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 0.9rem;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       RESPONSIVIDADE — MEDIA QUERY
+       Aplica estilos apenas quando a tela tiver até 600px.
+       Isso faz o grid de 3 colunas virar 1 coluna em celulares.
+       ──────────────────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      #menu {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!--
+    ┌─────────────────────────────────────────────────────────┐
+    │  <header>                                               │
+    │  → Cabeçalho da página                                  │
+    │  → Contém: nome do restaurante, slogan e navegação      │
+    └─────────────────────────────────────────────────────────┘
+  -->
+  <header>
+    <h1>Esquina do Sabor</h1>
+    <p>Sabor de verdade, feito com carinho 🍴</p>
+
+    <!--
+      <nav> → bloco de navegação
+      <ul>  → lista não-ordenada de links
+      <li>  → item de lista
+      <a href="#id"> → link que rola a página até a seção com aquele id
+    -->
+    <nav>
+      <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!--
+    ┌─────────────────────────────────────────────────────────┐
+    │  <main>                                                 │
+    │  → Conteúdo principal e único da página                 │
+    │  → Deve existir APENAS UMA VEZ por documento            │
+    └─────────────────────────────────────────────────────────┘
+  -->
+  <main>
+
+    <!--
+      ┌──────────────────────────────────────────────────────┐
+      │  <section id="inicio">                               │
+      │  → Seção de boas-vindas                              │
+      │  → O id permite que o link #inicio funcione          │
+      └──────────────────────────────────────────────────────┘
+    -->
+    <section id="inicio">
+      <h2>Bem-vindo!</h2>
+      <p>
+        Explore nosso cardápio e descubra sabores que aquecem a alma.
+        Aqui cada prato é preparado com ingredientes frescos e muito carinho.
+      </p>
+    </section>
+
+
+    <!--
+      ┌──────────────────────────────────────────────────────┐
+      │  <section id="menu">                                 │
+      │  → Seção do cardápio com os pratos                   │
+      │  → Cada prato é um <article> independente            │
+      └──────────────────────────────────────────────────────┘
+
+      Por que <article> e não <div> ou <section>?
+      → <article> representa conteúdo que faz sentido por si só.
+        Cada prato pode ser exibido em qualquer outro contexto
+        (ex: um e-mail de delivery) sem perder sentido.
+    -->
+    <section id="menu">
+      <h2>Nosso Cardápio</h2>
+
+      <article>
+        <h3>Frango Grelhado</h3>
+        <p>Filé de frango temperado na brasa, servido com arroz, feijão e salada.</p>
+        <p class="preco">R$ 32,00</p>
+      </article>
+
+      <article>
+        <h3>Moqueca de Peixe</h3>
+        <p>Peixe fresco cozido no leite de coco com pimentões e coentro.</p>
+        <p class="preco">R$ 48,00</p>
+      </article>
+
+      <article>
+        <h3>Salada Tropical</h3>
+        <p>Mix de folhas verdes, manga, tomate-cereja e molho de limão.</p>
+        <p class="preco">R$ 24,00</p>
+      </article>
+    </section>
+
+
+    <!--
+      ┌──────────────────────────────────────────────────────┐
+      │  <section id="sobre">                                │
+      │  → Seção institucional do restaurante                │
+      └──────────────────────────────────────────────────────┘
+    -->
+    <section id="sobre">
+      <h2>Sobre Nós</h2>
+      <p>
+        A Esquina do Sabor nasceu em 2010 de um sonho simples: oferecer
+        comida caseira de qualidade em um ambiente acolhedor. Começamos
+        com quatro mesas e hoje somos referência no bairro.
+      </p>
+      <p>
+        Nosso chef utiliza receitas tradicionais passadas de geração em
+        geração, sempre com ingredientes locais e frescos. Venha nos visitar!
+      </p>
+    </section>
+
+
+    <!--
+      ┌──────────────────────────────────────────────────────┐
+      │  <section id="contato">                              │
+      │  → Seção de contato com formulário                   │
+      └──────────────────────────────────────────────────────┘
+
+      REGRA DE ACESSIBILIDADE DO FORMULÁRIO:
+      Cada <label> tem um atributo "for" que deve ser igual
+      ao "id" do <input> correspondente. Assim, clicar no
+      texto do label foca o campo — e leitores de tela
+      conseguem associar o rótulo ao campo correto.
+    -->
+    <section id="contato">
+      <h2>Contato</h2>
+
+      <form>
+
+        <!-- Campo: Nome -->
+        <label for="nome">Nome</label>
+        <input
+          type="text"
+          id="nome"
+          name="nome"
+          placeholder="Seu nome completo"
+        />
+
+        <!-- Campo: E-mail (type="email" valida o formato) -->
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="seu@email.com"
+        />
+
+        <!-- Campo: Mensagem (textarea = campo de texto longo) -->
+        <label for="msg">Mensagem</label>
+        <textarea
+          id="msg"
+          name="msg"
+          rows="5"
+          placeholder="Escreva sua mensagem..."
+        ></textarea>
+
+        <!-- Botão de envio (type="submit") -->
+        <button type="submit">Enviar mensagem</button>
+
+      </form>
+    </section>
+
+  </main>
+
+
+  <!--
+    ┌─────────────────────────────────────────────────────────┐
+    │  <footer>                                               │
+    │  → Rodapé da página                                     │
+    │  → Contém: copyright, links legais, redes sociais       │
+    └─────────────────────────────────────────────────────────┘
+
+    &copy; é uma entidade HTML que representa o símbolo ©
+    Outras entidades comuns:
+      &amp;  → &
+      &lt;   → <
+      &gt;   → >
+      &nbsp; → espaço que não quebra linha
+  -->
+  <footer>
+    <p>&copy; 2024 Esquina do Sabor. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>

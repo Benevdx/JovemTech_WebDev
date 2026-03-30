@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+║           ATIVIDADE 1 — ARQUIVO 3 DE 3                          ║
+║                   reservas.html                                  ║
+║           Página de Reservas + JavaScript                        ║
+╠══════════════════════════════════════════════════════════════════╣
+║  Esta página tem um formulário de reserva de mesa e            ║
+║  informações de funcionamento do restaurante.                   ║
+║                                                                  ║
+║  DIFERENCIAL DESTA PÁGINA: usa JavaScript para exibir          ║
+║  uma mensagem de confirmação quando o formulário é enviado.     ║
+║                                                                  ║
+║  O <header>, <nav> e <footer> devem ser IGUAIS ao index.html.  ║
+╚══════════════════════════════════════════════════════════════════╝
+-->
+
+<html lang="??">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+    TODO 1 ── Título
+    ✏️  "Nome do Restaurante — Reservas"
+  -->
+  <title>NOME DO RESTAURANTE — Reservas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!--
+  ══════════════════════════════════════════════════════════════
+  TODO 2 ── CABEÇALHO (igual ao index.html)
+  ══════════════════════════════════════════════════════════════
+  ✏️  Copie o <header> do index.html.
+      No <nav>, marque o link "Reservas" como ativo:
+        <li><a href="reservas.html" class="ativo">Reservas</a></li>
+  -->
+
+
+  <!--
+  ══════════════════════════════════════════════════════════════
+  TODO 3 ── CONTEÚDO PRINCIPAL  <main>
+  ══════════════════════════════════════════════════════════════
+  ✏️  Envolva tudo abaixo com <main> ... </main>
+  -->
+
+
+    <!--
+    ──────────────────────────────────────────────────────────
+    TODO 4 ── TÍTULO DA PÁGINA
+    ──────────────────────────────────────────────────────────
+    ✏️  Crie uma <section> com:
+        → <h1> "Reservas" ou "Reserve sua Mesa"
+        → <p> breve texto explicando como funciona a reserva
+    -->
+
+
+    <!--
+    ──────────────────────────────────────────────────────────
+    TODO 5 ── FORMULÁRIO DE RESERVA
+    ──────────────────────────────────────────────────────────
+    Este é o formulário principal da página.
+    Diferente do formulário de contato, este tem campos
+    específicos para uma reserva de mesa.
+
+    IMPORTANTE: o <form> tem id="form-reserva"
+    Esse id será usado pelo JavaScript (TODO 8) para
+    capturar o evento de envio.
+
+    ✏️  Crie uma <section id="reserva"> com <h2> e o <form>:
+
+    <form id="form-reserva">
+
+      <!-- Nome completo -->
+      <label for="nome">Nome completo</label>
+      <input type="text" id="nome" name="nome" required />
+
+      <!-- Data da reserva — type="date" abre um calendário! -->
+      <label for="data">Data</label>
+      <input type="date" id="data" name="data" required />
+
+      <!-- Horário — type="time" abre um seletor de hora -->
+      <label for="horario">Horário</label>
+      <input type="time" id="horario" name="horario" required />
+
+      <!-- Número de pessoas — type="number" aceita só números -->
+      <label for="pessoas">Número de pessoas</label>
+      <input type="number" id="pessoas" name="pessoas"
+             min="1" max="20" required />
+
+      <!-- Observações — textarea para texto longo -->
+      <label for="obs">Observações (opcional)</label>
+      <textarea id="obs" name="obs"
+                placeholder="Alguma necessidade especial? Aniversário?">
+      </textarea>
+
+      <button type="submit">Confirmar Reserva</button>
+
+    </form>
+
+    <!-- Área onde a mensagem de confirmação vai aparecer (TODO 8) -->
+    <!-- Inicialmente vazia — o JavaScript preenche depois -->
+    <div id="mensagem-confirmacao"></div>
+    -->
+
+    <!--
+    DICA SOBRE type="date" e type="time":
+    ──────────────────────────────────────
+    O HTML5 tem tipos de input especiais que o navegador
+    renderiza com componentes visuais prontos:
+      type="date"   → abre um calendário
+      type="time"   → abre um seletor de hora
+      type="number" → aceita só números, com setas +/-
+      type="email"  → valida formato de e-mail
+    Esses tipos são semânticos: dizem O QUE o dado é,
+    e o navegador cuida da interface.
+    -->
+
+
+    <!--
+    ──────────────────────────────────────────────────────────
+    TODO 6 ── INFORMAÇÕES DE FUNCIONAMENTO
+    ──────────────────────────────────────────────────────────
+    ✏️  Crie uma <section id="funcionamento"> com:
+        → <h2> "Horário de Funcionamento" (ou similar)
+        → Uma <table> com os dias e horários
+
+    Estrutura da tabela:
+    ┌─────────────────────────────────────┐
+    │ <table>                             │
+    │   <thead>                           │
+    │     <tr>                            │
+    │       <th>Dia</th>                  │
+    │       <th>Horário</th>              │
+    │     </tr>                           │
+    │   </thead>                          │
+    │   <tbody>                           │
+    │     <tr>                            │
+    │       <td>Segunda a Sexta</td>      │
+    │       <td>11h às 22h</td>           │
+    │     </tr>                           │
+    │     ... (mais linhas)               │
+    │   </tbody>                          │
+    │ </table>                            │
+    └─────────────────────────────────────┘
+
+    ✏️  Crie horários coerentes com o tipo do seu restaurante.
+    -->
+
+
+  <!-- FIM DO CONTEÚDO PRINCIPAL -->
+
+
+  <!--
+  ══════════════════════════════════════════════════════════════
+  TODO 7 ── RODAPÉ (igual ao index.html)
+  ══════════════════════════════════════════════════════════════
+  ✏️  Copie o <footer> do index.html exatamente igual aqui.
+  -->
+
+
+  <!--
+  ══════════════════════════════════════════════════════════════
+  TODO 8 ── JAVASCRIPT: CONFIRMAÇÃO DE RESERVA
+  ══════════════════════════════════════════════════════════════
+  O JavaScript fica SEMPRE aqui — antes do </body>, por último.
+  Isso garante que o HTML já foi carregado quando o script roda.
+
+  O código abaixo:
+  1. "Escuta" o evento de envio do formulário
+  2. Impede o comportamento padrão (recarregar a página)
+  3. Lê o valor do campo "nome"
+  4. Exibe uma mensagem de confirmação personalizada
+
+  ✏️  Substitua este comentário pelo bloco <script> abaixo:
+
+  <script>
+    // Pega o formulário pelo id "form-reserva"
+    const formulario = document.getElementById('form-reserva');
+
+    // Pega a div onde a mensagem vai aparecer
+    const mensagem = document.getElementById('mensagem-confirmacao');
+
+    // "Escuta" o evento submit (clique em Confirmar Reserva)
+    formulario.addEventListener('submit', function(evento) {
+
+      // Impede a página de recarregar
+      evento.preventDefault();
+
+      // Lê o valor do campo nome
+      const nome = document.getElementById('nome').value;
+      const data = document.getElementById('data').value;
+      const pessoas = document.getElementById('pessoas').value;
+
+      // Exibe a mensagem de confirmação
+      mensagem.innerHTML =
+        '<p class="confirmacao-ok">' +
+          '✅ Reserva confirmada para <strong>' + nome + '</strong>! ' +
+          'Aguardamos você em ' + data + ' com ' + pessoas + ' pessoa(s).' +
+        '</p>';
+
+      // Limpa o formulário após envio
+      formulario.reset();
+    });
+  </script>
+
+  ──────────────────────────────────────────────────────────
+  COMO FUNCIONA O JavaScript ACIMA:
+  ──────────────────────────────────────────────────────────
+
+  document.getElementById('id')
+  → Busca um elemento pelo seu id.
+  → Retorna o elemento HTML — podemos guardar em uma variável.
+
+  .addEventListener('submit', function(evento) { ... })
+  → Adiciona um "ouvinte" ao formulário.
+  → Quando o usuário clicar em enviar, a função é executada.
+
+  evento.preventDefault()
+  → O comportamento padrão de um form é recarregar a página.
+  → Esse método cancela esse comportamento.
+
+  .value
+  → Propriedade que retorna o texto digitado num input.
+
+  element.innerHTML = '...'
+  → Define o conteúdo HTML dentro de um elemento.
+  → Permite inserir tags HTML junto com o texto.
+
+  formulario.reset()
+  → Limpa todos os campos do formulário.
+  ══════════════════════════════════════════════════════════
+  -->
+
+</body>
+</html>

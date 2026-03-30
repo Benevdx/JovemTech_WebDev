@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+║           ATIVIDADE 1 — ARQUIVO 1 DE 3                          ║
+║                    index.html                                    ║
+║              Página Inicial do Restaurante                       ║
+╠══════════════════════════════════════════════════════════════════╣
+║  Este é o arquivo principal do site.                            ║
+║  Aqui ficam: cabeçalho, menu de navegação, boas-vindas,         ║
+║  destaques do cardápio, sobre nós e contato.                    ║
+║                                                                  ║
+║  Siga os TODOs em ordem — cada um depende do anterior.          ║
+╚══════════════════════════════════════════════════════════════════╝
+-->
+
+<!--
+  TODO 1 ── lang
+  ───────────────
+  Defina o idioma da página. Para português do Brasil: pt-BR
+  ✏️  Substitua "??" pelo valor correto.
+-->
+<html lang="??">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+    TODO 2 ── Título da aba
+    ────────────────────────
+    ✏️  Escreva: "Nome do Restaurante — Início"
+        Exemplo: "Cantina da Vó — Início"
+  -->
+  <title>NOME DO RESTAURANTE — Início</title>
+
+  <!--
+    O styles.css é compartilhado pelas 3 páginas.
+    Não altere esta linha.
+  -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!--
+  ══════════════════════════════════════════════════════════════
+  TODO 3 ── CABEÇALHO  <header>
+  ══════════════════════════════════════════════════════════════
+  O <header> envolve o nome do restaurante e a navegação.
+  Ele aparece igual nas 3 páginas (index, cardápio, reservas).
+
+  ✏️  Envolva o bloco abaixo com <header> ... </header>
+  -->
+
+    <!--
+      TODO 4 ── Nome e slogan
+      ────────────────────────
+      ✏️  Troque pelo nome e slogan do SEU restaurante.
+          Mantenha as tags <h1> e <p>.
+    -->
+    <h1>Nome do Restaurante</h1>
+    <p>Seu slogan aqui</p>
+
+    <!--
+      TODO 5 ── Menu de navegação  <nav>
+      ────────────────────────────────────
+      IMPORTANTE: este menu aponta para ARQUIVOS diferentes,
+      não para âncoras (#). Os links usam o nome do arquivo:
+        href="index.html"    → página inicial   (esta página)
+        href="cardapio.html" → página do cardápio
+        href="reservas.html" → página de reservas
+
+      ✏️  Crie a estrutura abaixo:
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="cardapio.html">Cardápio</a></li>
+          <li><a href="reservas.html">Reservas</a></li>
+        </ul>
+      </nav>
+
+      Dica: o link da página atual pode ter class="ativo"
+      para receber um estilo diferente no CSS.
+      Ex: <li><a href="index.html" class="ativo">Início</a></li>
+    -->
+
+  <!-- FIM DO CABEÇALHO -->
+
+
+  <!--
+  ══════════════════════════════════════════════════════════════
+  TODO 6 ── CONTEÚDO PRINCIPAL  <main>
+  ══════════════════════════════════════════════════════════════
+  ✏️  Envolva todas as <section> abaixo com <main> ... </main>
+  -->
+
+
+    <!--
+    ──────────────────────────────────────────────────────────
+    TODO 7 ── SEÇÃO: BOAS-VINDAS
+    ──────────────────────────────────────────────────────────
+    ✏️  Crie uma <section id="inicio"> com:
+        → <h2> de boas-vindas
+        → <p> apresentando o restaurante ao visitante
+
+    Personalize com o tema do seu restaurante!
+    -->
+
+
+    <!--
+    ──────────────────────────────────────────────────────────
+    TODO 8 ── SEÇÃO: DESTAQUES DO CARDÁPIO
+    ──────────────────────────────────────────────────────────
+    Esta seção mostra 3 pratos em destaque.
+    O cardápio completo fica na página cardapio.html.
+
+    ✏️  Crie uma <section id="destaques"> com:
+        → <h2> "Destaques do Cardápio" (ou similar)
+        → 3 <article>, cada um com:
+            <h3> nome do prato
+            <p>  descrição curta
+            <p class="preco"> R$ 00,00
+
+    ✏️  Abaixo dos 3 articles, adicione um link para o cardápio:
+        <a href="cardapio.html">Ver cardápio completo →</a>
+
+    Personalize os pratos com o tema do seu restaurante!
+    -->
+
+
+    <!--
+    ──────────────────────────────────────────────────────────
+    TODO 9 ── SEÇÃO: SOBRE NÓS
+    ──────────────────────────────────────────────────────────
+    ✏️  Crie uma <section id="sobre"> com:
+        → <h2> "Sobre Nós"
+        → 2 <p> contando a história fictícia do restaurante
+
+    Seja criativo — invente uma história para o lugar!
+    ─────────────────────────────────────────────────
+    Sugestões:
+    - Quando foi fundado? Por quem?
+    - Qual é a especialidade da casa?
+    - Qual é a proposta do restaurante?
+    -->
+
+
+    <!--
+    ──────────────────────────────────────────────────────────
+    TODO 10 ── SEÇÃO: CONTATO
+    ──────────────────────────────────────────────────────────
+    ✏️  Crie uma <section id="contato"> com:
+        → <h2> "Contato" ou "Fale Conosco"
+        → <form> com os campos:
+
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" />
+
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" />
+
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" name="mensagem"></textarea>
+
+        <button type="submit">Enviar</button>
+
+    Lembre: cada <label> tem "for" igual ao "id" do <input>.
+    Isso é acessibilidade!
+    -->
+
+
+  <!-- FIM DO CONTEÚDO PRINCIPAL -->
+
+
+  <!--
+  ══════════════════════════════════════════════════════════════
+  TODO 11 ── RODAPÉ  <footer>
+  ══════════════════════════════════════════════════════════════
+  O rodapé deve ser IGUAL nas 3 páginas.
+  Copie este bloco para o cardapio.html e reservas.html também.
+
+  ✏️  Substitua este comentário por:
+      <footer>
+        <p>&copy; 2024 Nome do Restaurante. Todos os direitos reservados.</p>
+      </footer>
+  -->
+
+
+  <!--
+    O <script> fica sempre antes do </body>, por último.
+    Nesta página, não há JavaScript obrigatório.
+    Se quiser adicionar interatividade extra (opcional), faça aqui:
+    <script>
+      // seu código JavaScript
+    </script>
+  -->
+
+</body>
+</html>

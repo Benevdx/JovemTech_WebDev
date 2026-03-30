@@ -1,0 +1,390 @@
+/*
+╔══════════════════════════════════════════════════════════════════╗
+║           ATIVIDADE 1 — ESTILOS COMPARTILHADOS                  ║
+║                       styles.css                                 ║
+╠══════════════════════════════════════════════════════════════════╣
+║  Este arquivo é usado pelas 3 páginas: index, cardápio e        ║
+║  reservas. Tudo que você escrever aqui afeta as 3 ao mesmo      ║
+║  tempo — por isso o visual fica consistente em todo o site.     ║
+║                                                                  ║
+║  Siga os TODOs em ordem e teste no navegador a cada etapa.      ║
+╚══════════════════════════════════════════════════════════════════╝
+*/
+
+
+/* ================================================================
+   RESET BÁSICO — não altere este bloco
+   ================================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* ================================================================
+   TODO 1 ── VARIÁVEIS DE COR  :root { }
+   ──────────────────────────────────────
+   Defina aqui as cores do tema do seu restaurante.
+   Ao usar var(--nome) no restante do CSS, você muda
+   o visual inteiro mudando só este bloco.
+
+   OBRIGATÓRIO definir:
+     --cor-primaria   → cor principal (cabeçalho, botão, destaque)
+     --cor-secundaria → cor de apoio (rodapé, títulos)
+     --cor-fundo      → fundo geral da página
+     --cor-texto      → texto corrido
+
+   DICA: acesse https://coolors.co para criar paletas.
+   ================================================================ */
+:root {
+
+}
+
+
+/* ================================================================
+   TODO 2 ── BODY
+   ──────────────────────────────────────
+   Propriedades:
+     font-family      → fonte principal
+                        ex: 'Lato', sans-serif
+                        (ou qualquer fonte do Google Fonts que
+                         você importar no <head> do HTML)
+     background-color → var(--cor-fundo)
+     color            → var(--cor-texto)
+     line-height      → entre 1.5 e 1.8 (melhora leitura)
+   ================================================================ */
+body {
+
+}
+
+
+/* ================================================================
+   TODO 3 ── CABEÇALHO  header { }
+   ──────────────────────────────────────
+   Propriedades sugeridas:
+     background-color → var(--cor-primaria)
+     color            → #ffffff
+     padding          → ex: 32px 20px
+     text-align       → center
+   ================================================================ */
+header {
+
+}
+
+/* h1 dentro do header */
+header h1 {
+  /* Sugestão: font-size: 2.5rem; margin-bottom: 4px; */
+
+}
+
+/* Slogan (parágrafo dentro do header) */
+header > p {
+  /* Sugestão: opacity: 0.9; margin-bottom: 20px; */
+
+}
+
+
+/* ================================================================
+   TODO 4 ── NAVEGAÇÃO
+   ──────────────────────────────────────
+   nav ul → lista horizontal com Flexbox
+     list-style: none       → remove pontinhos
+     display: flex
+     justify-content: center
+     gap: 8px
+     flex-wrap: wrap
+
+   nav a → links do menu
+     text-decoration: none  → remove sublinhado
+     color: #ffffff
+     padding: 8px 16px
+     border-radius: 4px
+     font-weight: 700
+     transition: background-color 0.2s
+
+   nav a:hover → efeito ao passar o mouse
+     background-color: rgba(0,0,0,0.2)
+
+   nav a.ativo → link da página atual (class="ativo" no HTML)
+     background-color: rgba(255,255,255,0.25)
+     (destaca qual página está ativa)
+   ================================================================ */
+nav ul {
+
+}
+
+nav a {
+
+}
+
+nav a:hover {
+
+}
+
+/* Link da página atual */
+nav a.ativo {
+
+}
+
+
+/* ================================================================
+   TODO 5 ── CONTEÚDO PRINCIPAL  main { }
+   ──────────────────────────────────────
+     max-width: 960px
+     margin: 0 auto
+     padding: 40px 20px
+   ================================================================ */
+main {
+
+}
+
+
+/* ================================================================
+   TODO 6 ── SEÇÕES  section { }
+   ──────────────────────────────────────
+     margin-bottom: espaço entre seções (ex: 56px)
+   ================================================================ */
+section {
+
+}
+
+
+/* ================================================================
+   TODO 7 ── TÍTULOS DE SEÇÃO  h2 { }
+   ──────────────────────────────────────
+     font-size: 1.8rem
+     color: var(--cor-secundaria)
+     margin-bottom: 20px
+     padding-bottom: 8px
+     border-bottom: 3px solid var(--cor-primaria)
+   ================================================================ */
+h2 {
+
+}
+
+
+/* ================================================================
+   TODO 8 ── CARDS DE PRATO (index.html e cardápio.html)
+   ──────────────────────────────────────────────────────
+   PARTE A — Grade: seção com os cards usa Grid
+   O seletor .cards-grid será aplicado às sections
+   de pratos nas 3 páginas.
+
+   DICA: no HTML, adicione class="cards-grid" nas
+   <section> que contêm os <article> de pratos:
+     <section id="destaques" class="cards-grid">
+
+   .cards-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 24px;
+   }
+
+   .cards-grid h2 {
+     grid-column: 1 / -1;  → h2 ocupa as 3 colunas
+   }
+
+   PARTE B — Cada card <article>
+     background-color: #ffffff
+     border: 1px solid #e0e0e0
+     border-radius: 8px
+     padding: 24px
+     box-shadow: 0 2px 8px rgba(0,0,0,0.08)
+     display: flex
+     flex-direction: column
+
+   PARTE C — Nome do prato  article h3
+     font-size: 1.1rem
+     margin-bottom: 8px
+
+   PARTE D — Preço  .preco
+     color: var(--cor-primaria)
+     font-weight: 700
+     font-size: 1.1rem
+     margin-top: auto  → empurra o preço para o fim do card
+   ================================================================ */
+
+/* Parte A */
+.cards-grid {
+
+}
+
+.cards-grid h2 {
+
+}
+
+/* Parte B */
+article {
+
+}
+
+/* Parte C */
+article h3 {
+
+}
+
+/* Parte D */
+.preco {
+
+}
+
+
+/* ================================================================
+   TODO 9 ── LINKS DE DESTAQUE (ex: "Ver cardápio completo →")
+   ──────────────────────────────────────────────────────────
+   .link-destaque pode ser aplicado a <a> de chamada para ação.
+
+   Propriedades sugeridas:
+     display: inline-block
+     color: var(--cor-primaria)
+     font-weight: 700
+     text-decoration: none
+     margin-top: 16px
+     border-bottom: 2px solid var(--cor-primaria)
+     padding-bottom: 2px
+
+   No HTML: <a href="cardapio.html" class="link-destaque">
+   ================================================================ */
+.link-destaque {
+
+}
+
+.link-destaque:hover {
+
+}
+
+
+/* ================================================================
+   TODO 10 ── FORMULÁRIOS (contato e reservas)
+   ──────────────────────────────────────────────────────────
+   form            → flex-direction: column; gap: 12px; max-width: 560px
+   form label      → font-weight: 700; font-size: 0.9rem
+   form input,
+   form textarea,
+   form select     → width: 100%; padding: 10px 14px;
+                      border: 1px solid #ccc; border-radius: 6px;
+   form input:focus,
+   form textarea:focus → outline: none; border-color: var(--cor-primaria)
+   form textarea   → resize: vertical; min-height: 120px
+   form button     → background-color: var(--cor-primaria); color: #fff;
+                      padding: 12px 32px; border: none; border-radius: 6px;
+                      font-weight: 700; cursor: pointer
+   form button:hover → cor levemente mais escura
+   ================================================================ */
+form {
+
+}
+
+form label {
+
+}
+
+form input,
+form textarea,
+form select {
+
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+form button {
+
+}
+
+form button:hover {
+
+}
+
+
+/* ================================================================
+   TODO 11 ── MENSAGEM DE CONFIRMAÇÃO (reservas.html)
+   ──────────────────────────────────────────────────────────
+   A div#mensagem-confirmacao recebe o texto do JavaScript.
+   A classe .confirmacao-ok é adicionada pelo innerHTML do JS.
+
+   .confirmacao-ok {
+     margin-top: 20px;
+     padding: 16px 20px;
+     background-color: #d1fae5;
+     color: #065f46;
+     border: 1px solid #6ee7b7;
+     border-radius: 8px;
+     font-weight: 600;
+   }
+   ================================================================ */
+.confirmacao-ok {
+
+}
+
+
+/* ================================================================
+   TODO 12 ── TABELA DE FUNCIONAMENTO (reservas.html)
+   ──────────────────────────────────────────────────────────
+   table         → width: 100%; border-collapse: collapse
+   th            → background: var(--cor-secundaria); color: #fff;
+                   padding: 10px 16px; text-align: left
+   td            → padding: 10px 16px;
+                   border-bottom: 1px solid #e5e7eb
+   tr:nth-child(even) td → background: #f9fafb (linhas alternadas)
+   ================================================================ */
+table {
+
+}
+
+th {
+
+}
+
+td {
+
+}
+
+tr:nth-child(even) td {
+
+}
+
+
+/* ================================================================
+   TODO 13 ── RODAPÉ  footer { }
+   ──────────────────────────────────────
+     background-color: var(--cor-secundaria)
+     color: rgba(255,255,255,0.8)
+     text-align: center
+     padding: 24px 20px
+     font-size: 0.9rem
+   ================================================================ */
+footer {
+
+}
+
+
+/* ================================================================
+   TODO 14 (DESAFIO) ── RESPONSIVIDADE
+   ──────────────────────────────────────
+   Em telas pequenas (celular), o grid de 3 colunas
+   precisa virar 1 coluna para não ficar espremido.
+
+   @media (max-width: 600px) {
+     .cards-grid {
+       grid-template-columns: 1fr;
+     }
+     header h1 {
+       font-size: 1.8rem;
+     }
+   }
+
+   ✏️  Complete o bloco abaixo com o que achar necessário:
+   ================================================================ */
+@media (max-width: 600px) {
+
+}
