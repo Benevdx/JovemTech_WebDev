@@ -104,13 +104,37 @@ form.addEventListener("submit", function (event) {
     let cor   = document.getElementById("inputCor").value;
 	let senha = document.getElementById("inputSenha").value;
 
-    // Exibe tudo em um alert formatado
-    alert(
-        "===== DADOS DO CADASTRO =====\n" +
-        "Nome: "          + nome  + "\n" +
-        "Email: "         + email + "\n" +
-        "Idade: "         + idade + " anos\n" +
-        "Cor favorita: "  + cor +"\n" +
-        "Senha: "         + "*******"
-   );
+//    victorbenevides4@gmail.com
+	let mail = email.split("@");
+	//    [ 'victorbenevides4', 'gmail.com' ]
+ 
+	if (mail.length !== 2)
+	{
+		alert("Email inválido! O email deve conter um '@'.");
+		return;
+
+	} else if (mail[1].split(".").length < 2) {
+		// gmail.com -> [ 'gmail', 'com' ] -> length = 2
+		alert("Email inválido! O domínio deve conter um '.'.");
+		return;
+
+
+		// mail[0] = victorbenevides4
+	}else if (!isNaN(parseInt(mail[0]))) {
+		alert("Email inválido! O nome de usuário não pode começar com um número.");
+		return;
+	}
+	
+
+	console.log(!isNaN(parseInt(mail[0])))
+
+	// Exibe tudo em um alert formatado		
+	alert(
+		"===== DADOS DO CADASTRO =====\n" +
+		"Nome: "          + nome  + "\n" +
+		"Email: "         + email + "\n" +
+		"Idade: "         + idade + " anos\n" +
+		"Cor favorita: "  + cor +"\n" +
+		"Senha: "         + "*******"
+	);
 });
