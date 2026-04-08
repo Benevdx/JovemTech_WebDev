@@ -1,0 +1,172 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  padding: 32px 16px;
+  color: #1a1a1a;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 32px;
+  border: 1px solid #cccccc;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 24px;
+  color: #1a1a1a;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #333333;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #dddddd;
+  margin: 32px 0;
+}
+
+/* Campos do formulário */
+.campo {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #444444;
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+input:focus {
+  outline: none;
+  border-color: #0f6e56;
+}
+
+/* Campo readonly — visual diferente para deixar claro que é automático */
+input[readonly] {
+  background-color: #f5f5f5;
+  color: #666666;
+  cursor: not-allowed;
+}
+
+/* Linha com input + botão lado a lado */
+.cep-row {
+  display: flex;
+  gap: 8px;
+}
+
+.cep-row input {
+  flex: 1;
+}
+
+/* Linha dupla de campos */
+.linha-dupla {
+  display: flex;
+  gap: 16px;
+}
+
+.linha-dupla .campo {
+  flex: 1;
+}
+
+/* Botões */
+button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #0f6e56;
+  color: #ffffff;
+}
+
+button:hover {
+  background-color: #0a5040;
+}
+
+/* Botão de cadastrar ocupa a largura toda */
+#btnCadastrar {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px;
+  font-size: 15px;
+}
+
+/* Mensagens de feedback */
+.mensagem {
+  font-size: 13px;
+  margin-bottom: 12px;
+  min-height: 20px;
+}
+
+.mensagem.erro {
+  color: #cc0000;
+}
+
+.mensagem.sucesso {
+  color: #0f6e56;
+}
+
+/* Tabela de resultado */
+.resultado {
+  margin-top: 16px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table tr {
+  border-bottom: 1px solid #eeeeee;
+}
+
+table tr:last-child {
+  border-bottom: none;
+}
+
+table td {
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+.rotulo {
+  font-weight: bold;
+  color: #555555;
+  width: 110px;
+  background-color: #f9f9f9;
+}

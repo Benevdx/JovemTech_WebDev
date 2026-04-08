@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro com CEP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Cadastro de Usuário</h1>
+
+    <!-- SEÇÃO 1: Cadastro -->
+    <section id="secaoCadastro">
+      <h2>Novo Cadastro</h2>
+
+      <div class="campo">
+        <label for="inputNome">Nome</label>
+        <input type="text" id="inputNome" placeholder="Seu nome completo">
+      </div>
+
+      <div class="campo">
+        <label for="inputId">ID (3 dígitos)</label>
+        <input type="text" id="inputId" placeholder="Ex: 042" maxlength="3">
+      </div>
+
+      <div class="campo">
+        <label for="inputCep">CEP</label>
+        <div class="cep-row">
+          <input type="text" id="inputCep" placeholder="Ex: 01001000" maxlength="8">
+          <button id="btnBuscarCep">Buscar CEP</button>
+        </div>
+      </div>
+
+      <!-- Campos preenchidos automaticamente pela API -->
+      <div class="campo">
+        <label for="inputLogradouro">Logradouro</label>
+        <input type="text" id="inputLogradouro" placeholder="Preenchido automaticamente" readonly>
+      </div>
+
+      <div class="linha-dupla">
+        <div class="campo">
+          <label for="inputBairro">Bairro</label>
+          <input type="text" id="inputBairro" placeholder="Preenchido automaticamente" readonly>
+        </div>
+        <div class="campo">
+          <label for="inputCidade">Cidade</label>
+          <input type="text" id="inputCidade" placeholder="Preenchido automaticamente" readonly>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="inputUf">Estado (UF)</label>
+        <input type="text" id="inputUf" placeholder="Preenchido automaticamente" readonly>
+      </div>
+
+      <p id="msgCadastro" class="mensagem"></p>
+
+      <button id="btnCadastrar">Cadastrar</button>
+    </section>
+
+    <hr>
+
+    <!-- SEÇÃO 2: Consulta por ID -->
+    <section id="secaoConsulta">
+      <h2>Consultar Cadastro</h2>
+
+      <div class="campo">
+        <label for="inputConsultaId">ID do usuário</label>
+        <div class="cep-row">
+          <input type="text" id="inputConsultaId" placeholder="Ex: 042" maxlength="3">
+          <button id="btnConsultar">Buscar</button>
+        </div>
+      </div>
+
+      <p id="msgConsulta" class="mensagem"></p>
+
+      <!-- Resultado da consulta -->
+      <div id="resultadoConsulta" class="resultado" style="display: none;">
+        <h3>Dados encontrados</h3>
+        <table>
+          <tr><td class="rotulo">Nome</td><td id="rNome"></td></tr>
+          <tr><td class="rotulo">ID</td><td id="rId"></td></tr>
+          <tr><td class="rotulo">CEP</td><td id="rCep"></td></tr>
+          <tr><td class="rotulo">Logradouro</td><td id="rLogradouro"></td></tr>
+          <tr><td class="rotulo">Bairro</td><td id="rBairro"></td></tr>
+          <tr><td class="rotulo">Cidade</td><td id="rCidade"></td></tr>
+          <tr><td class="rotulo">UF</td><td id="rUf"></td></tr>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
