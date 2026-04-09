@@ -1,0 +1,240 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  color: #1a1a1a;
+}
+
+/* ── Telas ─────────────────────────────────── */
+
+.tela {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Classe utilitária para esconder telas */
+.oculto {
+  display: none !important;
+}
+
+/* ── Card central ───────────────────────────── */
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  padding: 36px 32px;
+  width: 100%;
+  max-width: 480px;
+}
+
+h1 {
+  font-size: 22px;
+  margin-bottom: 24px;
+  color: #1a1a1a;
+}
+
+h2 {
+  font-size: 16px;
+  margin-bottom: 16px;
+  color: #333333;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #dddddd;
+  margin: 24px 0;
+}
+
+/* ── Campos ─────────────────────────────────── */
+
+.campo {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #444444;
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+input:focus {
+  outline: none;
+  border-color: #0f6e56;
+}
+
+input[readonly] {
+  background-color: #f5f5f5;
+  color: #666666;
+  cursor: not-allowed;
+}
+
+/* ── Layouts de linha ───────────────────────── */
+
+.linha-botao {
+  display: flex;
+  gap: 8px;
+}
+
+.linha-botao input {
+  flex: 1;
+}
+
+.linha-dupla {
+  display: flex;
+  gap: 12px;
+}
+
+.linha-dupla .campo {
+  flex: 1;
+}
+
+/* ── Botões ─────────────────────────────────── */
+
+button {
+  width: 100%;
+  padding: 11px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #0f6e56;
+  color: #ffffff;
+  margin-top: 8px;
+}
+
+button:hover {
+  background-color: #0a5040;
+}
+
+/* Botão de buscar CEP não precisa de largura total */
+.linha-botao button {
+  width: auto;
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+/* Botão de sair — visual diferente */
+#btnSair {
+  background-color: #ffffff;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  margin-top: 24px;
+}
+
+#btnSair:hover {
+  background-color: #fff0f0;
+}
+
+/* ── Mensagens de feedback ──────────────────── */
+
+.mensagem {
+  font-size: 13px;
+  min-height: 20px;
+  margin: 8px 0;
+}
+
+.mensagem.erro {
+  color: #cc0000;
+}
+
+.mensagem.sucesso {
+  color: #0f6e56;
+}
+
+/* ── Link de troca de tela ──────────────────── */
+
+.link-troca {
+  font-size: 13px;
+  text-align: center;
+  margin-top: 16px;
+  color: #666666;
+}
+
+.link-troca span {
+  color: #0f6e56;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ── Perfil ─────────────────────────────────── */
+
+.perfil-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #0f6e56;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.subtitulo {
+  font-size: 13px;
+  color: #888888;
+  margin-top: 2px;
+}
+
+/* ── Tabela de perfil ───────────────────────── */
+
+.tabela-perfil {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 4px;
+}
+
+.tabela-perfil tr {
+  border-bottom: 1px solid #eeeeee;
+}
+
+.tabela-perfil tr:last-child {
+  border-bottom: none;
+}
+
+.tabela-perfil td {
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.rotulo {
+  font-weight: bold;
+  color: #555555;
+  width: 100px;
+  background-color: #f9f9f9;
+}

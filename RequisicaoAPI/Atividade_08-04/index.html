@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Cadastro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════
+       TELA 1 — LOGIN
+       Exibida por padrão ao abrir a página
+  ════════════════════════════════════════ -->
+  <div id="telaLogin" class="tela">
+    <div class="card">
+      <h1>Entrar</h1>
+
+      <div class="campo">
+        <label for="loginEmail">E-mail</label>
+        <input type="text" id="loginEmail" placeholder="seu@email.com">
+      </div>
+
+      <div class="campo">
+        <label for="loginSenha">Senha</label>
+        <input type="password" id="loginSenha" placeholder="Sua senha">
+      </div>
+
+      <p id="msgLogin" class="mensagem"></p>
+
+      <button id="btnEntrar">Entrar</button>
+
+      <p class="link-troca">
+        Não tem conta?
+        <span id="irParaCadastro">Criar cadastro</span>
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       TELA 2 — CADASTRO
+       Oculta por padrão, exibida ao clicar
+       em "Criar cadastro"
+  ════════════════════════════════════════ -->
+  <div id="telaCadastro" class="tela oculto">
+    <div class="card">
+      <h1>Criar Conta</h1>
+
+      <div class="campo">
+        <label for="cadNome">Nome completo</label>
+        <input type="text" id="cadNome" placeholder="Seu nome">
+      </div>
+
+      <div class="campo">
+        <label for="cadEmail">E-mail fictício</label>
+        <input type="text" id="cadEmail" placeholder="Ex: joao@escola.com">
+      </div>
+
+      <div class="campo">
+        <label for="cadSenha">Senha</label>
+        <input type="password" id="cadSenha" placeholder="Crie uma senha">
+      </div>
+
+      <div class="campo">
+        <label for="cadCep">CEP</label>
+        <div class="linha-botao">
+          <input type="text" id="cadCep" placeholder="Ex: 01001000" maxlength="8">
+          <button id="btnBuscarCep">Buscar</button>
+        </div>
+      </div>
+
+      <!-- Campos preenchidos automaticamente pela API -->
+      <div class="campo">
+        <label for="cadLogradouro">Logradouro</label>
+        <input type="text" id="cadLogradouro" placeholder="Preenchido pela API" readonly>
+      </div>
+
+      <div class="linha-dupla">
+        <div class="campo">
+          <label for="cadBairro">Bairro</label>
+          <input type="text" id="cadBairro" placeholder="Preenchido pela API" readonly>
+        </div>
+        <div class="campo">
+          <label for="cadCidade">Cidade</label>
+          <input type="text" id="cadCidade" placeholder="Preenchido pela API" readonly>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="cadUf">UF</label>
+        <input type="text" id="cadUf" placeholder="Preenchido pela API" readonly>
+      </div>
+
+      <p id="msgCadastro" class="mensagem"></p>
+
+      <button id="btnCadastrar">Criar conta</button>
+
+      <p class="link-troca">
+        Já tem conta?
+        <span id="irParaLogin">Fazer login</span>
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       TELA 3 — PERFIL
+       Exibida após o login bem-sucedido
+  ════════════════════════════════════════ -->
+  <div id="telaPerfil" class="tela oculto">
+    <div class="card">
+
+      <div class="perfil-header">
+        <div class="avatar" id="avatarInicial"></div>
+        <div>
+          <h1 id="perfilNome"></h1>
+          <p id="perfilEmail" class="subtitulo"></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>Endereço cadastrado</h2>
+
+      <table class="tabela-perfil">
+        <tr>
+          <td class="rotulo">CEP</td>
+          <td id="perfilCep"></td>
+        </tr>
+        <tr>
+          <td class="rotulo">Logradouro</td>
+          <td id="perfilLogradouro"></td>
+        </tr>
+        <tr>
+          <td class="rotulo">Bairro</td>
+          <td id="perfilBairro"></td>
+        </tr>
+        <tr>
+          <td class="rotulo">Cidade</td>
+          <td id="perfilCidade"></td>
+        </tr>
+        <tr>
+          <td class="rotulo">UF</td>
+          <td id="perfilUf"></td>
+        </tr>
+      </table>
+
+      <button id="btnSair">Sair</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
