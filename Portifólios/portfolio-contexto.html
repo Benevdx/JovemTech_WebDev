@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio — Seu Nome</title>
+
+  <!--
+  =====================================================
+    FONTE EXTERNA (Google Fonts)
+  ===================================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* =====================================================
+       VARIÁVEIS GLOBAIS
+       Mude um valor aqui e ele muda em todo o site!
+    ===================================================== */
+    :root {
+      --cor-fundo:    #faf9f7;
+      --cor-texto:    #1a1a1a;
+      --cor-suave:    #6b6b6b;
+      --cor-destaque: #c45c2e;
+      --cor-borda:    #e2e0dc;
+      --cor-card:     #ffffff;
+
+      --fonte-titulo: 'DM Serif Display', Georgia, serif;
+      --fonte-corpo:  'DM Sans', system-ui, sans-serif;
+
+      --largura-max:  680px;
+      --espacamento:  2rem;
+    }
+
+    /* =====================================================
+       RESET BÁSICO
+    ===================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      font-family: var(--fonte-corpo);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: var(--largura-max);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .divisor {
+      border: none;
+      border-top: 1px solid var(--cor-borda);
+      margin: var(--espacamento) 0;
+    }
+
+    /* =====================================================
+       BARRA DE CONTEXTO — Sistema Operacional + Clima
+       Fica no topo da página, antes do header.
+       Os dados são preenchidos pelo JavaScript.
+    ===================================================== */
+    .barra-contexto {
+      /*
+        Fundo levemente escuro para contrastar com o resto da página.
+        Usamos padding pequeno para não ocupar muito espaço.
+      */
+      background-color: var(--cor-texto);
+      color: var(--cor-fundo);
+      padding: 0.6rem 0;
+      font-size: 0.78rem;
+    }
+
+    .barra-contexto .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Cada bloco de info (SO / Clima) */
+    .ctx-bloco {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.85;
+    }
+
+    /* Ícone/emoji de cada bloco */
+    .ctx-bloco .ctx-icone {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    /* Rótulo estático (ex: "Sistema:") */
+    .ctx-bloco .ctx-rotulo {
+      opacity: 0.5;
+      margin-right: 2px;
+    }
+
+    /* Valor dinâmico preenchido pelo JS */
+    .ctx-bloco .ctx-valor {
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    /* Estado de carregamento — pisca enquanto busca os dados */
+    .ctx-carregando {
+      opacity: 0.4;
+      animation: piscar 1s step-end infinite;
+    }
+    @keyframes piscar { 50% { opacity: 0; } }
+
+    /* =====================================================
+       CABEÇALHO
+    ===================================================== */
+    header {
+      padding: 3.5rem 0 var(--espacamento);
+    }
+
+    header::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 3px;
+      background-color: var(--cor-destaque);
+      margin-bottom: 1.5rem;
+    }
+
+    .nome {
+      font-family: var(--fonte-titulo);
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .cargo {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--cor-suave);
+      letter-spacing: 0.03em;
+    }
+
+    .cargo em {
+      font-style: italic;
+      font-family: var(--fonte-titulo);
+      font-size: 1rem;
+      color: var(--cor-destaque);
+    }
+
+    /* =====================================================
+       TÍTULOS DE SEÇÃO
+    ===================================================== */
+    .secao-titulo {
+      font-family: var(--fonte-titulo);
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+    }
+
+    /* =====================================================
+       SEÇÃO: SOBRE MIM
+    ===================================================== */
+    .sobre p {
+      color: var(--cor-suave);
+      font-size: 1rem;
+      max-width: 58ch;
+    }
+
+    /* =====================================================
+       SEÇÃO: HABILIDADES — 3 cards com :hover
+    ===================================================== */
+    .habilidades-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .card-habilidade {
+      background-color: var(--cor-card);
+      border: 1px solid var(--cor-borda);
+      border-radius: 8px;
+      padding: 1.5rem 1.25rem;
+      transition: transform 0.2s ease,
+                  box-shadow 0.2s ease,
+                  border-color 0.2s ease;
+    }
+
+    .card-habilidade:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      border-color: var(--cor-destaque);
+    }
+
+    .card-habilidade .icone {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-habilidade h3 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-habilidade p {
+      font-size: 0.82rem;
+      color: var(--cor-suave);
+      line-height: 1.5;
+    }
+
+    /* =====================================================
+       SEÇÃO: EXPERIÊNCIAS — linha do tempo
+    ===================================================== */
+    .experiencias-lista {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .experiencia-item {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0 1.25rem;
+    }
+
+    .exp-data {
+      font-size: 0.78rem;
+      color: var(--cor-suave);
+      padding-top: 3px;
+      text-align: right;
+    }
+
+    .exp-conteudo {
+      border-left: 2px solid var(--cor-borda);
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .exp-conteudo::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 7px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--cor-destaque);
+      border: 2px solid var(--cor-fundo);
+    }
+
+    .exp-cargo   { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .exp-empresa { font-size: 0.82rem; color: var(--cor-destaque); margin-bottom: 0.4rem; font-style: italic; font-family: var(--fonte-titulo); }
+    .exp-descricao { font-size: 0.88rem; color: var(--cor-suave); line-height: 1.6; }
+
+    /* =====================================================
+       SEÇÃO: CONTATO
+    ===================================================== */
+    .contato-lista {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .contato-lista li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .contato-lista .rotulo {
+      font-size: 0.78rem;
+      color: var(--cor-suave);
+      width: 72px;
+      flex-shrink: 0;
+    }
+
+    .contato-lista a {
+      color: var(--cor-texto);
+      text-decoration: none;
+      border-bottom: 1px solid var(--cor-borda);
+      padding-bottom: 1px;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .contato-lista a:hover {
+      color: var(--cor-destaque);
+      border-bottom-color: var(--cor-destaque);
+    }
+
+    /* =====================================================
+       RODAPÉ
+    ===================================================== */
+    footer {
+      padding: var(--espacamento) 0 4rem;
+      font-size: 0.78rem;
+      color: var(--cor-suave);
+    }
+
+    /* =====================================================
+       RESPONSIVIDADE
+    ===================================================== */
+    @media (max-width: 520px) {
+      .habilidades-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .experiencia-item {
+        grid-template-columns: 1fr;
+      }
+
+      .exp-data {
+        text-align: left;
+        margin-bottom: 0.25rem;
+      }
+
+      /* Na barra de contexto, empilha os blocos */
+      .barra-contexto .container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       BARRA DE CONTEXTO — preenchida pelo JavaScript
+       Os spans com id são os alvos que o JS vai atualizar.
+  ===================================================== -->
+  <div class="barra-contexto">
+    <div class="container">
+
+      <!-- Bloco: Sistema Operacional -->
+      <div class="ctx-bloco">
+        <span class="ctx-icone">💻</span>
+        <span class="ctx-rotulo">Sistema:</span>
+        <span class="ctx-valor" id="ctx-so">
+          <span class="ctx-carregando">detectando...</span>
+        </span>
+      </div>
+
+      <!-- Bloco: Clima -->
+      <div class="ctx-bloco">
+        <span class="ctx-icone" id="ctx-clima-icone">🌡️</span>
+        <span class="ctx-rotulo">Clima:</span>
+        <span class="ctx-valor" id="ctx-clima">
+          <span class="ctx-carregando">buscando localização...</span>
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+
+    <!-- =====================================================
+         CABEÇALHO
+    ===================================================== -->
+    <header>
+      <h1 class="nome">Seu Nome Completo</h1>
+      <p class="cargo">
+        <em>Estudante de Desenvolvimento Web</em> &nbsp;·&nbsp; Turma 2025
+      </p>
+    </header>
+
+    <hr class="divisor" />
+
+    <!-- =====================================================
+         SOBRE MIM
+    ===================================================== -->
+    <section class="sobre">
+      <h2 class="secao-titulo">Sobre mim</h2>
+      <p>
+        Olá! Sou apaixonado por tecnologia e estou em formação na área de desenvolvimento web.
+        Gosto de resolver problemas com código limpo e criar interfaces que as pessoas
+        realmente consigam usar. Fora da programação, curto xadrez, leitura e trilhas.
+      </p>
+    </section>
+
+    <hr class="divisor" />
+
+    <!-- =====================================================
+         HABILIDADES
+    ===================================================== -->
+    <section class="habilidades">
+      <h2 class="secao-titulo">Habilidades</h2>
+      <div class="habilidades-grid">
+
+        <div class="card-habilidade">
+          <span class="icone">🌐</span>
+          <h3>HTML + CSS</h3>
+          <p>Estrutura e estilo de páginas web, layouts com Flexbox e Grid.</p>
+        </div>
+
+        <div class="card-habilidade">
+          <span class="icone">⚙️</span>
+          <h3>JavaScript</h3>
+          <p>Lógica de programação, manipulação do DOM e interatividade.</p>
+        </div>
+
+        <div class="card-habilidade">
+          <span class="icone">🔧</span>
+          <h3>Git + GitHub</h3>
+          <p>Versionamento de código, repositórios e colaboração em equipe.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="divisor" />
+
+    <!-- =====================================================
+         EXPERIÊNCIAS
+    ===================================================== -->
+    <section class="experiencias">
+      <h2 class="secao-titulo">Experiências</h2>
+      <ul class="experiencias-lista">
+
+        <li class="experiencia-item">
+          <span class="exp-data">2024 – hoje</span>
+          <div class="exp-conteudo">
+            <p class="exp-cargo">Curso de Desenvolvimento Web</p>
+            <p class="exp-empresa">Nome da Escola / Instituição</p>
+            <p class="exp-descricao">
+              Formação em HTML, CSS, JavaScript e boas práticas de desenvolvimento.
+              Projetos práticos ao longo do curso.
+            </p>
+          </div>
+        </li>
+
+        <li class="experiencia-item">
+          <span class="exp-data">2024</span>
+          <div class="exp-conteudo">
+            <p class="exp-cargo">Projeto — Landing Page Pessoal</p>
+            <p class="exp-empresa">Projeto próprio</p>
+            <p class="exp-descricao">
+              Criação de um site portfólio com HTML, CSS e JavaScript puro,
+              responsivo para dispositivos móveis.
+            </p>
+          </div>
+        </li>
+
+        <li class="experiencia-item">
+          <span class="exp-data">2023</span>
+          <div class="exp-conteudo">
+            <p class="exp-cargo">Assistente Administrativo</p>
+            <p class="exp-empresa">Nome da empresa</p>
+            <p class="exp-descricao">
+              Organização de documentos, suporte a equipes e uso de planilhas.
+            </p>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+    <hr class="divisor" />
+
+    <!-- =====================================================
+         CONTATO
+    ===================================================== -->
+    <section class="contato">
+      <h2 class="secao-titulo">Contato</h2>
+      <ul class="contato-lista">
+
+        <li>
+          <span class="rotulo">Email</span>
+          <a href="mailto:seu@email.com">seu@email.com</a>
+        </li>
+
+        <li>
+          <span class="rotulo">Instagram</span>
+          <a href="https://instagram.com/seuperfil" target="_blank">@seuperfil</a>
+        </li>
+
+        <li>
+          <span class="rotulo">GitHub</span>
+          <a href="https://github.com/seuperfil" target="_blank">github.com/seuperfil</a>
+        </li>
+
+        <li>
+          <span class="rotulo">WhatsApp</span>
+          <a href="https://wa.me/5579999999999" target="_blank">(79) 99999-9999</a>
+        </li>
+
+      </ul>
+    </section>
+
+    <footer>
+      <hr class="divisor" />
+      <p>Feito com HTML, CSS e JavaScript &nbsp;·&nbsp; Seu Nome &nbsp;·&nbsp; 2025</p>
+    </footer>
+
+  </div><!-- fim .container -->
+
+
+  <!-- =====================================================
+       JAVASCRIPT — Sistema Operacional + Clima
+
+       Este bloco está no final do <body> de propósito:
+       o navegador lê o HTML de cima para baixo, então
+       colocar o script aqui garante que toda a página
+       já foi desenhada antes de o JS rodar.
+
+       O código está dividido em 3 partes:
+         1. Detectar o Sistema Operacional
+         2. Pedir a localização ao usuário (Geolocation API)
+         3. Buscar o clima com a localização (Open-Meteo API)
+  ===================================================== -->
+  <script>
+
+    /* ==================================================
+       PARTE 1 — DETECTAR O SISTEMA OPERACIONAL
+       Usamos navigator.userAgent, uma string que o
+       navegador envia com informações sobre o dispositivo.
+       Testamos essa string com expressões regulares (//).
+    ================================================== */
+    function detectarSistema() {
+      const ua = navigator.userAgent; // string com info do dispositivo
+
+      let sistema = 'Desconhecido';
+
+      if (/Windows NT 10/.test(ua))    sistema = 'Windows 11 / 10';
+      else if (/Windows NT 6/.test(ua)) sistema = 'Windows (versão anterior)';
+      else if (/Mac OS X/.test(ua))     sistema = 'macOS';
+      else if (/Android/.test(ua))      sistema = 'Android';
+      else if (/iPhone|iPad/.test(ua))  sistema = 'iOS';
+      else if (/Linux/.test(ua))        sistema = 'Linux';
+      else if (/CrOS/.test(ua))         sistema = 'ChromeOS';
+
+      // Atualiza o elemento na página com o resultado
+      document.getElementById('ctx-so').textContent = sistema;
+    }
+
+
+    /* ==================================================
+       PARTE 2 — BUSCAR CLIMA
+       Usamos duas APIs públicas e gratuitas:
+
+       a) Geolocation API (nativa do navegador)
+          Pede ao usuário permissão para acessar a
+          localização (latitude e longitude).
+
+       b) Open-Meteo (https://open-meteo.com)
+          API de clima gratuita, sem necessidade de
+          cadastro ou chave. Recebe lat/lon e retorna
+          temperatura e código de clima.
+    ================================================== */
+
+    /*
+      Tabela de ícones por código WMO de clima.
+      A Open-Meteo retorna um número (weathercode) que
+      representa a condição do tempo. Mapeamos para emoji.
+
+      Referência: https://open-meteo.com/en/docs
+    */
+    function iconeDoClima(codigo) {
+      if (codigo === 0)              return '☀️';   // céu limpo
+      if (codigo <= 2)               return '⛅';   // parcialmente nublado
+      if (codigo === 3)              return '☁️';   // nublado
+      if (codigo >= 51 && codigo <= 67) return '🌧️'; // chuva
+      if (codigo >= 71 && codigo <= 77) return '❄️'; // neve
+      if (codigo >= 80 && codigo <= 82) return '🌦️'; // pancadas de chuva
+      if (codigo >= 95)              return '⛈️';   // tempestade
+      return '🌡️'; // fallback genérico
+    }
+
+    /*
+      Texto descritivo do clima pelo código WMO.
+    */
+    function textoDoClima(codigo) {
+      if (codigo === 0)                 return 'Céu limpo';
+      if (codigo === 1)                 return 'Principalmente limpo';
+      if (codigo === 2)                 return 'Parcialmente nublado';
+      if (codigo === 3)                 return 'Nublado';
+      if (codigo >= 51 && codigo <= 55) return 'Garoa';
+      if (codigo >= 61 && codigo <= 67) return 'Chuva';
+      if (codigo >= 71 && codigo <= 77) return 'Neve';
+      if (codigo >= 80 && codigo <= 82) return 'Pancadas de chuva';
+      if (codigo >= 95)                 return 'Tempestade';
+      return 'Variável';
+    }
+
+    /*
+      Função principal do clima.
+      Recebe latitude e longitude, chama a API e
+      atualiza a barra de contexto com o resultado.
+    */
+    async function buscarClima(lat, lon) {
+      /*
+        Montamos a URL da API com os parâmetros que queremos:
+        - latitude e longitude do usuário
+        - current_weather: dados do clima atual
+        - temperature_unit: celsius
+        - timezone: auto (detecta pelo local)
+      */
+      const url =
+        `https://api.open-meteo.com/v1/forecast` +
+        `?latitude=${lat}&longitude=${lon}` +
+        `&current_weather=true` +
+        `&temperature_unit=celsius` +
+        `&timezone=auto`;
+
+      try {
+        /*
+          fetch() faz uma requisição HTTP para a URL.
+          É assíncrono: usamos await para esperar a resposta
+          antes de continuar. O try/catch captura erros de rede.
+        */
+        const resposta = await fetch(url);
+        const dados = await resposta.json(); // converte JSON → objeto JS
+
+        const clima = dados.current_weather;
+        const temp  = Math.round(clima.temperature); // arredonda a temperatura
+        const cod   = clima.weathercode;
+
+        // Atualiza o ícone e o texto na barra
+        document.getElementById('ctx-clima-icone').textContent = iconeDoClima(cod);
+        document.getElementById('ctx-clima').textContent =
+          `${temp}°C — ${textoDoClima(cod)}`;
+
+      } catch (erro) {
+        // Se a API falhar, mostra mensagem amigável
+        document.getElementById('ctx-clima').textContent = 'Não foi possível carregar';
+        console.error('Erro ao buscar clima:', erro);
+      }
+    }
+
+    /*
+      Pede a localização ao navegador.
+      O navegador exibe um popup pedindo permissão ao usuário.
+      - Se aceitar: recebe lat/lon e chama buscarClima()
+      - Se recusar: mostra mensagem explicativa
+    */
+    function pedirLocalizacao() {
+      // Verifica se o navegador suporta Geolocation
+      if (!navigator.geolocation) {
+        document.getElementById('ctx-clima').textContent =
+          'Geolocalização não suportada';
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        // Sucesso: posição recebida
+        function(posicao) {
+          const lat = posicao.coords.latitude;
+          const lon = posicao.coords.longitude;
+          buscarClima(lat, lon);
+        },
+        // Erro: usuário recusou ou outro problema
+        function(erro) {
+          const mensagens = {
+            1: 'Permissão negada pelo usuário',
+            2: 'Posição indisponível',
+            3: 'Tempo esgotado',
+          };
+          document.getElementById('ctx-clima').textContent =
+            mensagens[erro.code] || 'Erro de localização';
+        }
+      );
+    }
+
+
+    /* ==================================================
+       INICIALIZAÇÃO
+       Chamamos as duas funções quando a página carrega.
+    ================================================== */
+    detectarSistema();
+    pedirLocalizacao();
+
+  </script>
+
+</body>
+</html>

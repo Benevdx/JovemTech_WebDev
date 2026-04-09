@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>★ PORTFOLIO PLAYER 1 ★</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:   #0a0a0a;
+    --dark:    #1a0a2e;
+    --darker:  #120820;
+    --purple:  #2d0a5e;
+    --yellow:  #ffe000;
+    --yellow2: #ffb800;
+    --cyan:    #00e5ff;
+    --pink:    #ff2d9b;
+    --green:   #39ff14;
+    --red:     #ff3131;
+    --white:   #f0f0e8;
+    --gray:    #6a6a7a;
+    --tile-dark: #0d0d1a;
+    --tile-light: #13132a;
+    --font-pixel: 'Press Start 2P', monospace;
+    --font-vt: 'VT323', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; image-rendering: pixelated; }
+
+  body {
+    background: var(--darker);
+    color: var(--white);
+    font-family: var(--font-pixel);
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect x='0' y='0' width='4' height='4' fill='%23ffe000'/%3E%3Crect x='4' y='4' width='4' height='4' fill='%23ffe000'/%3E%3Crect x='8' y='8' width='4' height='4' fill='%23ffe000'/%3E%3C/svg%3E") 0 0, crosshair;
+  }
+
+  /* TILE background — checkerboard */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-conic-gradient(var(--tile-dark) 0% 25%, var(--tile-light) 0% 50%);
+    background-size: 32px 32px;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* CRT vignette */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.75) 100%);
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  /* ══ MARQUEE TOP BAR ══ */
+  .top-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 36px;
+    background: var(--yellow);
+    border-bottom: 4px solid var(--black);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .marquee-inner {
+    display: flex;
+    gap: 0;
+    animation: marquee 18s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-inner span {
+    font-family: var(--font-pixel);
+    font-size: 9px;
+    color: var(--black);
+    padding: 0 32px;
+    letter-spacing: 1px;
+  }
+  .marquee-inner span::before { content: '★ '; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ══ BOTTOM NAV ══ */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 40px;
+    background: var(--black);
+    border-top: 4px solid var(--yellow);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+  .bottom-nav a {
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.1s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .bottom-nav a:hover { color: var(--yellow); }
+  .bottom-nav a .btn-icon {
+    width: 14px; height: 14px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7px;
+  }
+
+  /* ══ MAIN ══ */
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 60px 16px 72px;
+  }
+
+  /* ══ PIXEL BORDER mixin ══ */
+  .pixel-box {
+    border: 4px solid var(--yellow);
+    box-shadow: 4px 4px 0 var(--black), inset 0 0 0 2px var(--black);
+    background: var(--dark);
+    image-rendering: pixelated;
+  }
+  .pixel-box-cyan {
+    border: 4px solid var(--cyan);
+    box-shadow: 4px 4px 0 var(--black), inset 0 0 0 2px var(--black);
+    background: var(--dark);
+  }
+  .pixel-box-pink {
+    border: 4px solid var(--pink);
+    box-shadow: 4px 4px 0 var(--black), inset 0 0 0 2px var(--black);
+    background: var(--dark);
+  }
+  .pixel-box-green {
+    border: 4px solid var(--green);
+    box-shadow: 4px 4px 0 var(--black), inset 0 0 0 2px var(--black);
+    background: var(--dark);
+  }
+
+  /* ══ SECTION HEADER ══ */
+  .sec-header {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 28px;
+  }
+  .sec-header h2 {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--yellow);
+    color: var(--black);
+    padding: 6px 16px;
+    border: 3px solid var(--black);
+    box-shadow: 3px 3px 0 var(--black);
+    white-space: nowrap;
+  }
+  .sec-header .sec-line {
+    flex: 1;
+    height: 4px;
+    background: repeating-linear-gradient(90deg, var(--yellow) 0 8px, transparent 8px 16px);
+    margin-left: 8px;
+  }
+  .sec-num {
+    font-size: 8px;
+    color: var(--gray);
+    margin-left: 12px;
+    white-space: nowrap;
+  }
+
+  section { margin-bottom: 60px; }
+
+  /* ══════════════════════
+     HERO — SELECT SCREEN
+  ══════════════════════ */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+    min-height: 82vh;
+    padding-top: 16px;
+  }
+
+  /* PLAYER CARD left */
+  .hero-card {
+    padding: 24px;
+    position: relative;
+  }
+
+  .insert-coin {
+    font-size: 8px;
+    color: var(--yellow);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    animation: insertBlink 1s step-end infinite;
+  }
+  @keyframes insertBlink { 50% { opacity: 0; } }
+
+  .player-tag {
+    font-size: 7px;
+    color: var(--cyan);
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .player-tag::before {
+    content: '';
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--cyan);
+    animation: blink 0.6s step-end infinite alternate;
+  }
+  @keyframes blink { to { opacity: 0; } }
+
+  .hero-name {
+    font-size: clamp(18px, 3.5vw, 32px);
+    font-weight: 400;
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: var(--white);
+    text-shadow:
+      3px 3px 0 var(--black),
+      -1px -1px 0 var(--purple);
+    margin-bottom: 8px;
+    animation: fadeInDown 0.5s steps(1) both;
+  }
+  .hero-name .highlight { color: var(--yellow); text-shadow: 3px 3px 0 var(--black); }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* HP / EXP bars */
+  .status-bars { margin: 20px 0 24px; }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .bar-lbl {
+    font-size: 7px;
+    color: var(--yellow);
+    width: 28px;
+    flex-shrink: 0;
+    letter-spacing: 1px;
+  }
+  .bar-track {
+    flex: 1;
+    height: 12px;
+    background: var(--black);
+    border: 2px solid var(--gray);
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    position: relative;
+    transition: width 1.6s steps(20);
+  }
+  .bar-fill::after {
+    content: '';
+    position: absolute;
+    inset: 2px 0;
+    background: rgba(255,255,255,0.2);
+    clip-path: polygon(0 0, 8px 0, 0 100%);
+  }
+  .bar-hp   { background: var(--green); }
+  .bar-exp  { background: var(--cyan); }
+  .bar-mag  { background: var(--pink); }
+  .bar-val {
+    font-size: 7px;
+    color: var(--white);
+    width: 40px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* role title */
+  .hero-role {
+    font-size: 8px;
+    color: var(--cyan);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding: 6px 12px;
+    border-left: 4px solid var(--cyan);
+    background: rgba(0,229,255,0.06);
+  }
+
+  .hero-desc {
+    font-family: var(--font-vt);
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--white);
+    opacity: 0.85;
+    margin-bottom: 28px;
+    border-top: 2px solid rgba(255,255,255,0.06);
+    padding-top: 16px;
+  }
+
+  /* PIXEL BUTTONS */
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .px-btn {
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.05s, box-shadow 0.05s;
+    image-rendering: pixelated;
+  }
+  .px-btn-yellow {
+    background: var(--yellow);
+    color: var(--black);
+    border: 3px solid var(--black);
+    box-shadow: 4px 4px 0 var(--black);
+  }
+  .px-btn-yellow:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--black); }
+  .px-btn-outline {
+    background: transparent;
+    color: var(--cyan);
+    border: 3px solid var(--cyan);
+    box-shadow: 4px 4px 0 var(--black);
+  }
+  .px-btn-outline:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--black); }
+
+  /* ══ AVATAR — sprite box ══ */
+  .hero-sprite {
+    position: relative;
+    width: 220px;
+    flex-shrink: 0;
+    animation: slideInRight 0.5s steps(4) both 0.3s;
+  }
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .sprite-frame {
+    width: 220px;
+    height: 220px;
+    background: var(--purple);
+    border: 4px solid var(--yellow);
+    box-shadow: 6px 6px 0 var(--black), inset 0 0 0 3px var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  /* pixel scanlines inside sprite */
+  .sprite-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 3px, rgba(0,0,0,0.25) 3px, rgba(0,0,0,0.25) 4px
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .sprite-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+  }
+  .sprite-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    z-index: 1;
+  }
+
+  /* Pixel art person placeholder — pure CSS */
+  .pixel-person {
+    image-rendering: pixelated;
+    width: 80px;
+    height: 80px;
+    position: relative;
+  }
+  .pixel-person svg { width: 100%; height: 100%; }
+
+  .sprite-name-tag {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: var(--yellow);
+    border-top: 4px solid var(--black);
+    padding: 6px 10px;
+    font-size: 8px;
+    color: var(--black);
+    text-align: center;
+    letter-spacing: 1px;
+    z-index: 3;
+  }
+
+  /* life hearts */
+  .sprite-lives {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+    justify-content: center;
+  }
+  .heart {
+    font-size: 14px;
+    animation: heartbeat 1.2s ease infinite;
+    display: inline-block;
+  }
+  .heart:nth-child(2) { animation-delay: 0.1s; }
+  .heart:nth-child(3) { animation-delay: 0.2s; }
+  @keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  .sprite-score {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 7px;
+    color: var(--yellow);
+    letter-spacing: 2px;
+  }
+
+  /* CLASS badge */
+  .class-badge {
+    margin-top: 10px;
+    background: var(--pink);
+    border: 3px solid var(--black);
+    box-shadow: 3px 3px 0 var(--black);
+    padding: 6px 12px;
+    font-size: 7px;
+    color: var(--black);
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  /* ════════════════════
+     STATS CARDS
+  ══════════════════════ */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .stat-card {
+    padding: 20px 16px;
+    position: relative;
+    transition: transform 0.05s;
+    text-align: center;
+  }
+  .stat-card:hover { transform: translate(-2px,-2px); }
+  .stat-card:hover.pixel-box { box-shadow: 6px 6px 0 var(--black); }
+
+  .stat-icon-row {
+    font-size: 20px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .stat-num {
+    font-size: 36px;
+    color: var(--yellow);
+    text-shadow: 3px 3px 0 var(--black);
+    line-height: 1;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .stat-lbl {
+    font-family: var(--font-vt);
+    font-size: 16px;
+    color: var(--gray);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* corner stars */
+  .stat-card::before {
+    content: '★';
+    position: absolute;
+    top: 6px; left: 8px;
+    font-size: 8px;
+    color: var(--yellow);
+    opacity: 0.5;
+  }
+  .stat-card::after {
+    content: '★';
+    position: absolute;
+    bottom: 6px; right: 8px;
+    font-size: 8px;
+    color: var(--yellow);
+    opacity: 0.5;
+  }
+
+  /* ══════════════════
+     SKILLS
+  ══════════════════ */
+  .skills-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .skills-panel { padding: 24px; position: relative; }
+
+  .panel-hdr {
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding: 8px 12px;
+    border: 3px solid var(--black);
+    display: inline-block;
+  }
+  .panel-hdr-yellow { background: var(--yellow); color: var(--black); box-shadow: 3px 3px 0 var(--black); }
+  .panel-hdr-pink   { background: var(--pink);   color: var(--black); box-shadow: 3px 3px 0 var(--black); }
+
+  /* skill bars — RPG style */
+  .skill-item { margin-bottom: 16px; }
+  .skill-item:last-child { margin-bottom: 0; }
+  .skill-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+  }
+  .skill-name {
+    font-family: var(--font-vt);
+    font-size: 18px;
+    color: var(--white);
+    flex: 1;
+    letter-spacing: 1px;
+  }
+  .skill-stars { display: flex; gap: 2px; }
+  .star { font-size: 10px; color: var(--gray); }
+  .star.on { color: var(--yellow); }
+  .skill-bar-bg {
+    height: 10px;
+    background: var(--black);
+    border: 2px solid var(--gray);
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: repeating-linear-gradient(
+      90deg, var(--green) 0 10px, rgba(0,0,0,0.3) 10px 12px
+    );
+    transition: width 1.8s steps(20);
+    position: relative;
+  }
+
+  /* soft skill — menu items */
+  .soft-menu { list-style: none; }
+  .soft-menu li {
+    font-family: var(--font-vt);
+    font-size: 20px;
+    color: var(--white);
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    border-bottom: 2px dashed rgba(255,255,255,0.06);
+    cursor: default;
+    transition: all 0.1s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .soft-menu li::before {
+    content: '▷';
+    color: var(--gray);
+    font-size: 12px;
+    transition: color 0.1s, transform 0.1s;
+  }
+  .soft-menu li:hover {
+    background: rgba(255,224,0,0.08);
+    color: var(--yellow);
+    padding-left: 20px;
+  }
+  .soft-menu li:hover::before { color: var(--yellow); transform: translateX(4px); }
+
+  /* ══════════════════
+     FORMAÇÃO — WORLD MAP style
+  ══════════════════ */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 0; bottom: 0;
+    width: 4px;
+    background: repeating-linear-gradient(
+      180deg, var(--yellow) 0 8px, var(--black) 8px 12px
+    );
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 18px 20px;
+    transition: transform 0.05s;
+  }
+  .timeline-item:hover { transform: translate(-2px,-2px); }
+  .timeline-item::before {
+    content: '★';
+    position: absolute;
+    left: -30px; top: 18px;
+    font-size: 14px;
+    color: var(--yellow);
+    text-shadow: 1px 1px 0 var(--black);
+  }
+
+  .tl-date {
+    font-size: 7px;
+    color: var(--cyan);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .tl-title {
+    font-size: 10px;
+    color: var(--yellow);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    text-shadow: 2px 2px 0 var(--black);
+  }
+  .tl-org {
+    font-family: var(--font-vt);
+    font-size: 18px;
+    color: var(--gray);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .tl-desc {
+    font-family: var(--font-vt);
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--white);
+    opacity: 0.8;
+    margin-bottom: 10px;
+  }
+  .tl-badge {
+    display: inline-block;
+    font-size: 7px;
+    padding: 4px 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 2px solid var(--black);
+    box-shadow: 2px 2px 0 var(--black);
+    cursor: default;
+  }
+  .badge-done   { background: var(--green);  color: var(--black); }
+  .badge-active { background: var(--yellow); color: var(--black); animation: badgePulse 1s step-end infinite; }
+  @keyframes badgePulse { 50% { opacity: 0.6; } }
+  .badge-cert   { background: var(--cyan);   color: var(--black); }
+
+  /* ══════════════════
+     CONTATO — PLAYER SELECT
+  ══════════════════ */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 16px;
+  }
+
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    text-decoration: none;
+    position: relative;
+    transition: transform 0.05s;
+    overflow: hidden;
+  }
+  .contact-card:hover {
+    transform: translate(-3px,-3px);
+  }
+  .contact-card.pixel-box:hover { box-shadow: 7px 7px 0 var(--black); }
+
+  /* coin spin */
+  .contact-icon {
+    width: 44px; height: 44px;
+    border: 3px solid var(--black);
+    box-shadow: 3px 3px 0 var(--black);
+    background: var(--yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    color: var(--black);
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    font-weight: 400;
+  }
+  .contact-type {
+    font-size: 7px;
+    color: var(--cyan);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .contact-value {
+    font-family: var(--font-vt);
+    font-size: 18px;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+
+  /* SELECT arrow */
+  .contact-card::after {
+    content: '▶';
+    position: absolute;
+    right: 14px;
+    font-size: 10px;
+    color: var(--yellow);
+    opacity: 0;
+    transition: opacity 0.1s;
+  }
+  .contact-card:hover::after { opacity: 1; }
+
+  /* ══ GAME OVER footer ══ */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 28px 16px 48px;
+    border-top: 4px solid var(--yellow);
+    background: var(--black);
+    margin-top: 20px;
+  }
+  footer .game-over {
+    font-size: 14px;
+    color: var(--yellow);
+    text-shadow: 4px 4px 0 var(--black);
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    animation: gameOverBlink 2s step-end infinite;
+  }
+  @keyframes gameOverBlink { 50%{opacity:0.4} }
+  footer .copyright {
+    font-family: var(--font-vt);
+    font-size: 16px;
+    color: var(--gray);
+    letter-spacing: 2px;
+  }
+
+  /* ══ SCROLL REVEAL ══ */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s steps(5), transform 0.5s steps(5); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ══ RESPONSIVE ══ */
+  @media (max-width: 700px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-sprite { margin: 0 auto; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .skills-wrapper { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP MARQUEE -->
+<div class="top-bar">
+  <div class="marquee-inner">
+    <span>PLAYER 1 READY</span><span>INSERT COIN TO CONTINUE</span>
+    <span>HIGH SCORE: 999999</span><span>PRESS START</span>
+    <span>LEVEL 99 DEVELOPER</span><span>NEW RECORD</span>
+    <span>PLAYER 1 READY</span><span>INSERT COIN TO CONTINUE</span>
+    <span>HIGH SCORE: 999999</span><span>PRESS START</span>
+    <span>LEVEL 99 DEVELOPER</span><span>NEW RECORD</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+
+    <div class="hero-card pixel-box">
+      <div class="insert-coin">▶ PLAYER 1 — PRESS START</div>
+      <div class="player-tag">PERSONAGEM SELECIONADO</div>
+      <h1 class="hero-name">SEU <span class="highlight">NOME</span><br>AQUI</h1>
+      <p class="hero-role">// DESENVOLVEDOR WEB — CLASSE: FRONT-END //</p>
+
+      <div class="status-bars">
+        <div class="bar-row">
+          <span class="bar-lbl">HP</span>
+          <div class="bar-track"><div class="bar-fill bar-hp" style="width:0%" data-w="90%"></div></div>
+          <span class="bar-val">90/100</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-lbl">EXP</span>
+          <div class="bar-track"><div class="bar-fill bar-exp" style="width:0%" data-w="75%"></div></div>
+          <span class="bar-val">750/999</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-lbl">MGC</span>
+          <div class="bar-track"><div class="bar-fill bar-mag" style="width:0%" data-w="60%"></div></div>
+          <span class="bar-val">60/100</span>
+        </div>
+      </div>
+
+      <p class="hero-desc">
+        Olá! Sou um desenvolvedor web em formação, apaixonado por criar interfaces que as pessoas realmente gostam de usar. Transformo linhas de código em experiências digitais épicas, um pixel de cada vez.
+      </p>
+
+      <div class="hero-btns">
+        <a href="#contato" class="px-btn px-btn-yellow">▶ Entrar em contato</a>
+        <a href="#stats" class="px-btn px-btn-outline">★ Ver projetos</a>
+      </div>
+    </div>
+
+    <!-- SPRITE -->
+    <div class="hero-sprite">
+      <div class="sprite-frame">
+        <!-- Troque o conteúdo abaixo pela sua foto: <img src="foto.jpg" class="sprite-img"> -->
+        <div class="sprite-placeholder">
+          <svg class="pixel-person" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="width:96px;height:96px;image-rendering:pixelated">
+            <rect x="5" y="0" width="6" height="6" fill="#ffe000"/>
+            <rect x="4" y="1" width="1" height="4" fill="#ffe000"/>
+            <rect x="11" y="1" width="1" height="4" fill="#ffe000"/>
+            <rect x="6" y="2" width="1" height="1" fill="#0a0a0a"/>
+            <rect x="9" y="2" width="1" height="1" fill="#0a0a0a"/>
+            <rect x="6" y="4" width="4" height="1" fill="#0a0a0a"/>
+            <rect x="4" y="6" width="8" height="5" fill="#2d0a5e"/>
+            <rect x="3" y="7" width="2" height="4" fill="#2d0a5e"/>
+            <rect x="11" y="7" width="2" height="4" fill="#2d0a5e"/>
+            <rect x="4" y="11" width="3" height="5" fill="#1a0a2e"/>
+            <rect x="9" y="11" width="3" height="5" fill="#1a0a2e"/>
+            <rect x="6" y="6" width="4" height="1" fill="#ff2d9b"/>
+          </svg>
+          <span style="font-size:8px;color:var(--gray);letter-spacing:1px;margin-top:4px">SUA FOTO AQUI</span>
+        </div>
+        <div class="sprite-name-tag">★ SEU NOME ★</div>
+      </div>
+      <div class="sprite-lives">
+        <span class="heart">❤</span>
+        <span class="heart">❤</span>
+        <span class="heart">❤</span>
+      </div>
+      <div class="sprite-score" id="score">SCORE: 000000</div>
+      <div class="class-badge">CLASSE: FRONT-END DEV</div>
+    </div>
+
+  </section>
+
+  <!-- ═══ STATS ═══ -->
+  <section id="stats" class="reveal">
+    <div class="sec-header">
+      <h2>★ Status do Player</h2>
+      <div class="sec-line"></div>
+      <span class="sec-num">STAGE 01</span>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card pixel-box">
+        <span class="stat-icon-row">🗺️</span>
+        <span class="stat-num" data-target="12">0</span>
+        <span class="stat-lbl">Projetos Completos</span>
+      </div>
+      <div class="stat-card pixel-box-cyan">
+        <span class="stat-icon-row">⚔️</span>
+        <span class="stat-num" data-target="5" style="color:var(--cyan)">0</span>
+        <span class="stat-lbl">Linguagens Dominadas</span>
+      </div>
+      <div class="stat-card pixel-box-pink">
+        <span class="stat-icon-row">📜</span>
+        <span class="stat-num" data-target="8" style="color:var(--pink)">0</span>
+        <span class="stat-lbl">Cursos Concluídos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SKILLS ═══ -->
+  <section id="skills" class="reveal">
+    <div class="sec-header">
+      <h2>★ Habilidades</h2>
+      <div class="sec-line"></div>
+      <span class="sec-num">STAGE 02</span>
+    </div>
+    <div class="skills-wrapper">
+
+      <div class="skills-panel pixel-box">
+        <div class="panel-hdr panel-hdr-yellow">⚔ Hard Skills</div>
+
+        <div class="skill-item">
+          <div class="skill-row">
+            <span class="skill-name">HTML5 + CSS3</span>
+            <div class="skill-stars">
+              <span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span>
+            </div>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:0%" data-width="88%"></div></div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-row">
+            <span class="skill-name">JavaScript</span>
+            <div class="skill-stars">
+              <span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:0%" data-width="72%"></div></div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-row">
+            <span class="skill-name">Git + GitHub</span>
+            <div class="skill-stars">
+              <span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:0%" data-width="68%"></div></div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-row">
+            <span class="skill-name">React</span>
+            <div class="skill-stars">
+              <span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:0%" data-width="50%"></div></div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-row">
+            <span class="skill-name">Figma</span>
+            <div class="skill-stars">
+              <span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:0%" data-width="62%"></div></div>
+        </div>
+      </div>
+
+      <div class="skills-panel pixel-box-pink">
+        <div class="panel-hdr panel-hdr-pink">✦ Soft Skills</div>
+        <ul class="soft-menu">
+          <li>Trabalho em Equipe</li>
+          <li>Comunicação</li>
+          <li>Resolução de Problemas</li>
+          <li>Aprendizado Rápido</li>
+          <li>Criatividade</li>
+          <li>Organização</li>
+          <li>Adaptabilidade</li>
+          <li>Proatividade</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ FORMAÇÃO ═══ -->
+  <section id="formacao" class="reveal">
+    <div class="sec-header">
+      <h2>★ Formação / Database</h2>
+      <div class="sec-line"></div>
+      <span class="sec-num">STAGE 03</span>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item pixel-box">
+        <div class="tl-date">2024 — PRESENTE</div>
+        <div class="tl-title">Desenvolvimento Web Full Stack</div>
+        <div class="tl-org">Nome da Escola / Instituição</div>
+        <p class="tl-desc">Formação completa em desenvolvimento web cobrindo HTML, CSS, JavaScript, lógica de programação e boas práticas do mercado.</p>
+        <span class="tl-badge badge-active">▶ em andamento</span>
+      </div>
+
+      <div class="timeline-item pixel-box-cyan">
+        <div class="tl-date">2023</div>
+        <div class="tl-title">Certificação JavaScript Moderno</div>
+        <div class="tl-org">Plataforma Online</div>
+        <p class="tl-desc">Curso avançado de JS com foco em ES6+, assincronismo, APIs e manipulação do DOM.</p>
+        <span class="tl-badge badge-cert">★ certificado</span>
+      </div>
+
+      <div class="timeline-item pixel-box-green">
+        <div class="tl-date">2022</div>
+        <div class="tl-title">Ensino Médio Completo</div>
+        <div class="tl-org">Nome da Escola</div>
+        <p class="tl-desc">Formação básica com ênfase em ciências exatas.</p>
+        <span class="tl-badge badge-done">✓ diploma obtido</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ CONTATO ═══ -->
+  <section id="contato" class="reveal">
+    <div class="sec-header">
+      <h2>★ Contato / Continue?</h2>
+      <div class="sec-line"></div>
+      <span class="sec-num">STAGE 04</span>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card pixel-box" href="mailto:seu@email.com">
+        <div class="contact-icon">@</div>
+        <div>
+          <div class="contact-type">E-mail</div>
+          <div class="contact-value">seu@email.com</div>
+        </div>
+      </a>
+      <a class="contact-card pixel-box-cyan" href="https://linkedin.com/in/seuperfil" target="_blank">
+        <div class="contact-icon" style="background:var(--cyan)">IN</div>
+        <div>
+          <div class="contact-type">LinkedIn</div>
+          <div class="contact-value">linkedin.com/in/seuperfil</div>
+        </div>
+      </a>
+      <a class="contact-card pixel-box-pink" href="https://github.com/seuperfil" target="_blank">
+        <div class="contact-icon" style="background:var(--pink)">&lt;/&gt;</div>
+        <div>
+          <div class="contact-type">GitHub</div>
+          <div class="contact-value">github.com/seuperfil</div>
+        </div>
+      </a>
+      <a class="contact-card pixel-box-green" href="https://wa.me/55XXXXXXXXXXX" target="_blank">
+        <div class="contact-icon" style="background:var(--green)">WA</div>
+        <div>
+          <div class="contact-type">WhatsApp</div>
+          <div class="contact-value">+55 (XX) XXXXX-XXXX</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="game-over">★ THANKS FOR PLAYING ★</p>
+  <p class="copyright">© 2025 SEU NOME — ALL RIGHTS RESERVED — MADE WITH ❤ AND LOTS OF COFFEE</p>
+</footer>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <a href="#stats"><span class="btn-icon">A</span>STATUS</a>
+  <a href="#skills"><span class="btn-icon">B</span>SKILLS</a>
+  <a href="#formacao"><span class="btn-icon">X</span>DATABASE</a>
+  <a href="#contato"><span class="btn-icon">Y</span>CONTATO</a>
+</div>
+
+<script>
+  // Score counter
+  let score = 0;
+  setInterval(() => {
+    score = Math.min(score + Math.floor(Math.random() * 37 + 13), 999999);
+    document.getElementById('score').textContent = 'SCORE: ' + String(score).padStart(6, '0');
+  }, 200);
+
+  // Animated counters
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const duration = 1600;
+    const steps = 20;
+    let current = 0;
+    const inc = target / steps;
+    const timer = setInterval(() => {
+      current = Math.min(current + inc, target);
+      el.textContent = Math.floor(current);
+      if (current >= target) clearInterval(timer);
+    }, duration / steps);
+  }
+
+  // Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      entry.target.querySelectorAll('.stat-num[data-target]').forEach(animateCounter);
+      entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        setTimeout(() => { bar.style.width = bar.dataset.width; }, 300);
+      });
+      entry.target.querySelectorAll('.bar-fill[data-w]').forEach(bar => {
+        setTimeout(() => { bar.style.width = bar.dataset.w; }, 400);
+      });
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Hero HP bars animate on load
+  setTimeout(() => {
+    document.querySelectorAll('.bar-fill[data-w]').forEach(bar => {
+      bar.style.width = bar.dataset.w;
+    });
+  }, 600);
+
+  // Konami code easter egg
+  const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let ki = 0;
+  document.addEventListener('keydown', e => {
+    if (e.key === konami[ki]) { ki++; } else { ki = 0; }
+    if (ki === konami.length) {
+      document.querySelector('.hero-name').style.animation = 'gameOverBlink 0.2s step-end 6';
+      document.querySelector('.sprite-score').textContent = 'SCORE: 999999';
+      ki = 0;
+    }
+  });
+</script>
+</body>
+</html>

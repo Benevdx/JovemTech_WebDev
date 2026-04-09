@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PORTFOLIO // SEU NOME</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon: #00ffe7;
+    --neon2: #ff003c;
+    --neon3: #ffe600;
+    --bg: #020b14;
+    --bg2: #050f1c;
+    --bg3: #0a1628;
+    --panel: #071525;
+    --border: rgba(0,255,231,0.25);
+    --border-strong: rgba(0,255,231,0.6);
+    --text: #c8e8f0;
+    --text-dim: #5a8a9f;
+    --font-hud: 'Orbitron', monospace;
+    --font-mono: 'Share Tech Mono', monospace;
+    --font-body: 'Exo 2', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* SCANLINES overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.18) 2px,
+      rgba(0,0,0,0.18) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* GRID background */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,231,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,231,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* CORNER decorations */
+  .corner-tl, .corner-tr, .corner-bl, .corner-br {
+    position: fixed;
+    width: 60px; height: 60px;
+    z-index: 100;
+    pointer-events: none;
+  }
+  .corner-tl { top: 12px; left: 12px; border-top: 2px solid var(--neon); border-left: 2px solid var(--neon); }
+  .corner-tr { top: 12px; right: 12px; border-top: 2px solid var(--neon); border-right: 2px solid var(--neon); }
+  .corner-bl { bottom: 12px; left: 12px; border-bottom: 2px solid var(--neon); border-left: 2px solid var(--neon); }
+  .corner-br { bottom: 12px; right: 12px; border-bottom: 2px solid var(--neon); border-right: 2px solid var(--neon); }
+
+  /* STATUS BAR */
+  .status-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 32px;
+    background: rgba(2,11,20,0.95);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 200;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+  }
+  .status-bar .sys-id { color: var(--neon); letter-spacing: 2px; }
+  .status-blip {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--neon);
+    display: inline-block;
+    margin-right: 6px;
+    animation: blink 1.4s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.1} }
+
+  .status-bar .nav-links { display: flex; gap: 24px; }
+  .status-bar .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    font-size: 10px;
+    transition: color 0.2s;
+  }
+  .status-bar .nav-links a:hover { color: var(--neon); text-shadow: 0 0 8px var(--neon); }
+
+  /* MAIN CONTENT */
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 24px 80px;
+  }
+
+  /* ══════════════════════════
+     SECTION: HERO
+  ══════════════════════════ */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: center;
+    min-height: 88vh;
+    padding-top: 20px;
+  }
+
+  .hero-text { max-width: 540px; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--neon);
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    background: rgba(0,255,231,0.04);
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .hero-badge::before { content: '//'; opacity: 0.5; }
+
+  .hero-name {
+    font-family: var(--font-hud);
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 30px rgba(0,255,231,0.3);
+    margin-bottom: 10px;
+    animation: fadeInUp 0.8s ease both;
+  }
+  .hero-name span { color: var(--neon); }
+
+  .hero-title {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--neon);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: fadeInUp 0.8s 0.15s ease both;
+  }
+  .hero-title::before { content: '> '; opacity: 0.5; }
+
+  .hero-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text);
+    opacity: 0.85;
+    margin-bottom: 36px;
+    animation: fadeInUp 0.8s 0.25s ease both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.8s 0.35s ease both;
+  }
+
+  .btn {
+    font-family: var(--font-hud);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  }
+  .btn-primary {
+    background: var(--neon);
+    color: #000;
+    font-weight: 700;
+  }
+  .btn-primary:hover { background: #fff; box-shadow: 0 0 20px var(--neon); }
+  .btn-outline {
+    background: transparent;
+    color: var(--neon);
+    border: 1px solid var(--neon);
+    clip-path: none;
+  }
+  .btn-outline:hover { background: rgba(0,255,231,0.08); box-shadow: 0 0 16px rgba(0,255,231,0.3); }
+
+  /* AVATAR CIRCLE */
+  .hero-avatar {
+    position: relative;
+    width: 260px;
+    height: 260px;
+    flex-shrink: 0;
+    animation: fadeIn 1s 0.4s ease both;
+  }
+
+  .avatar-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid var(--border-strong);
+    animation: spin 12s linear infinite;
+  }
+  .avatar-ring::before {
+    content: '';
+    position: absolute;
+    top: -4px; left: 50%;
+    width: 8px; height: 8px;
+    background: var(--neon);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 12px var(--neon);
+  }
+  .avatar-ring-2 {
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,255,231,0.12);
+    animation: spin 20s linear infinite reverse;
+  }
+  .avatar-ring-3 {
+    position: absolute;
+    inset: -16px;
+    border-radius: 50%;
+    border: 1px dashed rgba(0,255,231,0.08);
+    animation: spin 30s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .avatar-img {
+    position: absolute;
+    inset: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--bg3);
+    border: 2px solid rgba(0,255,231,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .avatar-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .avatar-placeholder {
+    font-family: var(--font-hud);
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--neon);
+    opacity: 0.4;
+    letter-spacing: -2px;
+  }
+
+  .avatar-scan {
+    position: absolute;
+    inset: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .avatar-scan::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon), transparent);
+    animation: scan 3s ease-in-out infinite;
+    opacity: 0.6;
+  }
+  @keyframes scan {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  .avatar-status {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--neon);
+    letter-spacing: 2px;
+    white-space: nowrap;
+    background: rgba(2,11,20,0.8);
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+  }
+
+  /* ══════════════════════════
+     SECTION LABEL
+  ══════════════════════════ */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .section-label h2 {
+    font-family: var(--font-hud);
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--neon);
+    white-space: nowrap;
+  }
+  .section-label .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-strong), transparent);
+  }
+  .section-label .idx {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  section { margin-bottom: 80px; }
+
+  /* ══════════════════════════
+     STATS CARDS
+  ══════════════════════════ */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .stat-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 28px 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,255,231,0.04), transparent 60%);
+    pointer-events: none;
+  }
+  .stat-card:hover {
+    border-color: var(--neon);
+    box-shadow: 0 0 20px rgba(0,255,231,0.1), inset 0 0 20px rgba(0,255,231,0.04);
+    transform: translateY(-3px);
+  }
+  .stat-card .stat-icon {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .stat-card .stat-num {
+    font-family: var(--font-hud);
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--neon);
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(0,255,231,0.4);
+    margin-bottom: 8px;
+  }
+  .stat-card .stat-label {
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+  }
+  .stat-card .corner-accent {
+    position: absolute;
+    top: 0; right: 0;
+    width: 20px; height: 20px;
+    background: var(--neon);
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    opacity: 0.6;
+  }
+
+  /* ══════════════════════════
+     SKILLS SECTION
+  ══════════════════════════ */
+  .skills-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .skills-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+  }
+  .skills-panel::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--neon), transparent);
+    opacity: 0.4;
+  }
+
+  .panel-title {
+    font-family: var(--font-hud);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--neon);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .panel-title::before { content: '>>'; opacity: 0.4; }
+
+  /* Hard skills — barra */
+  .skill-item { margin-bottom: 18px; }
+  .skill-item:last-child { margin-bottom: 0; }
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+  }
+  .skill-name {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text);
+    letter-spacing: 1px;
+  }
+  .skill-pct {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--neon);
+  }
+  .skill-bar-bg {
+    height: 4px;
+    background: rgba(0,255,231,0.08);
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon), rgba(0,255,231,0.4));
+    position: relative;
+    transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 0 8px var(--neon);
+  }
+  .skill-bar-fill::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: #fff;
+    box-shadow: 0 0 6px var(--neon);
+  }
+
+  /* Soft skills — tags */
+  .soft-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .soft-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    background: rgba(0,255,231,0.02);
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .soft-tag:hover {
+    color: var(--neon);
+    border-color: var(--neon);
+    background: rgba(0,255,231,0.06);
+    box-shadow: 0 0 12px rgba(0,255,231,0.1);
+  }
+
+  /* ══════════════════════════
+     FORMAÇÃO / TIMELINE
+  ══════════════════════════ */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--neon), var(--border), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 32px;
+    padding: 20px 24px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -29px; top: 24px;
+    width: 10px; height: 10px;
+    background: var(--neon);
+    border: 2px solid var(--bg);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--neon);
+  }
+  .timeline-item:hover {
+    border-color: var(--border-strong);
+    box-shadow: 0 0 20px rgba(0,255,231,0.06);
+  }
+
+  .tl-date {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--neon);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .tl-title {
+    font-family: var(--font-hud);
+    font-size: 14px;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .tl-org {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .tl-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text);
+    opacity: 0.75;
+  }
+  .tl-badge {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid rgba(255,230,0,0.4);
+    color: var(--neon3);
+    background: rgba(255,230,0,0.04);
+  }
+
+  /* ══════════════════════════
+     CONTATO
+  ══════════════════════════ */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--neon);
+    transform: scaleY(0);
+    transition: transform 0.3s;
+    transform-origin: bottom;
+  }
+  .contact-card:hover::before { transform: scaleY(1); }
+  .contact-card:hover {
+    border-color: var(--border-strong);
+    box-shadow: 0 0 20px rgba(0,255,231,0.08);
+    transform: translateX(4px);
+  }
+
+  .contact-icon {
+    width: 40px; height: 40px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    background: rgba(0,255,231,0.04);
+  }
+
+  .contact-info .contact-type {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .contact-info .contact-value {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  /* ══════════════════════════
+     FOOTER
+  ══════════════════════════ */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+  }
+  footer span { color: var(--neon); }
+
+  /* ══════════════════════════
+     ANIMATIONS
+  ══════════════════════════ */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* GLITCH effect on name hover */
+  .hero-name:hover {
+    animation: glitch 0.4s infinite;
+  }
+  @keyframes glitch {
+    0%   { text-shadow: 2px 0 var(--neon2), -2px 0 var(--neon); }
+    25%  { text-shadow: -2px 0 var(--neon2), 2px 0 var(--neon); }
+    50%  { text-shadow: 2px 0 var(--neon), -2px 0 var(--neon2); }
+    75%  { text-shadow: 0 2px var(--neon2), 0 -2px var(--neon); }
+    100% { text-shadow: 2px 0 var(--neon2), -2px 0 var(--neon); }
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(0,255,231,0.3); border-radius: 0; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; text-align: center; }
+    .hero-avatar { margin: 0 auto; width: 200px; height: 200px; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .skills-wrapper { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .hero-cta { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HUD corners -->
+<div class="corner-tl"></div>
+<div class="corner-tr"></div>
+<div class="corner-bl"></div>
+<div class="corner-br"></div>
+
+<!-- Status bar / Nav -->
+<header class="status-bar">
+  <span class="sys-id"><span class="status-blip"></span>SYS://PORTFOLIO_v2.0</span>
+  <nav class="nav-links">
+    <a href="#stats">STATUS</a>
+    <a href="#skills">SKILLS</a>
+    <a href="#formacao">DATABASE</a>
+    <a href="#contato">UPLINK</a>
+  </nav>
+  <span id="clock">00:00:00</span>
+</header>
+
+<main>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-badge">DESENVOLVEDOR WEB</div>
+      <h1 class="hero-name">SEU <span>NOME</span><br>AQUI</h1>
+      <p class="hero-title">Front-end Developer // Criador de Interfaces</p>
+      <p class="hero-desc">
+        Olá! Sou um desenvolvedor apaixonado por criar experiências digitais únicas.
+        Transformo ideias em interfaces funcionais e visualmente impactantes,
+        combinando código limpo com design inovador.
+      </p>
+      <div class="hero-cta">
+        <a href="#contato" class="btn btn-primary">Entrar em contato</a>
+        <a href="#stats" class="btn btn-outline">Ver projetos</a>
+      </div>
+    </div>
+
+    <!-- Avatar -->
+    <div class="hero-avatar">
+      <div class="avatar-ring-3"></div>
+      <div class="avatar-ring"></div>
+      <div class="avatar-ring-2"></div>
+      <div class="avatar-img">
+        <!-- Substitua o src pela sua foto -->
+        <!-- <img src="sua-foto.jpg" alt="Foto de perfil"> -->
+        <span class="avatar-placeholder">??</span>
+      </div>
+      <div class="avatar-scan"></div>
+      <div class="avatar-status">● ONLINE</div>
+    </div>
+  </section>
+
+  <!-- ═══ STATS ═══ -->
+  <section id="stats" class="reveal">
+    <div class="section-label">
+      <h2>Status do jogador</h2>
+      <div class="line"></div>
+      <span class="idx">[ 01 ]</span>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="corner-accent"></div>
+        <div class="stat-icon">// projetos</div>
+        <div class="stat-num" data-target="12">0</div>
+        <div class="stat-label">Projetos concluídos</div>
+      </div>
+      <div class="stat-card">
+        <div class="corner-accent"></div>
+        <div class="stat-icon">// linguagens</div>
+        <div class="stat-num" data-target="5">0</div>
+        <div class="stat-label">Linguagens dominadas</div>
+      </div>
+      <div class="stat-card">
+        <div class="corner-accent"></div>
+        <div class="stat-icon">// cursos</div>
+        <div class="stat-num" data-target="8">0</div>
+        <div class="stat-label">Cursos concluídos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SKILLS ═══ -->
+  <section id="skills" class="reveal">
+    <div class="section-label">
+      <h2>Habilidades</h2>
+      <div class="line"></div>
+      <span class="idx">[ 02 ]</span>
+    </div>
+    <div class="skills-wrapper">
+
+      <!-- Hard Skills -->
+      <div class="skills-panel">
+        <div class="panel-title">Hard Skills</div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">HTML5 + CSS3</span>
+            <span class="skill-pct">90%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" style="width:0%" data-width="90%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">JavaScript</span>
+            <span class="skill-pct">75%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" style="width:0%" data-width="75%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Git + GitHub</span>
+            <span class="skill-pct">70%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" style="width:0%" data-width="70%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">React</span>
+            <span class="skill-pct">55%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" style="width:0%" data-width="55%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Figma / UI Design</span>
+            <span class="skill-pct">60%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" style="width:0%" data-width="60%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Soft Skills -->
+      <div class="skills-panel">
+        <div class="panel-title">Soft Skills</div>
+        <div class="soft-tags">
+          <span class="soft-tag">Trabalho em equipe</span>
+          <span class="soft-tag">Comunicação</span>
+          <span class="soft-tag">Resolução de problemas</span>
+          <span class="soft-tag">Aprendizado rápido</span>
+          <span class="soft-tag">Criatividade</span>
+          <span class="soft-tag">Organização</span>
+          <span class="soft-tag">Adaptabilidade</span>
+          <span class="soft-tag">Proatividade</span>
+          <span class="soft-tag">Foco em resultados</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ FORMAÇÃO ═══ -->
+  <section id="formacao" class="reveal">
+    <div class="section-label">
+      <h2>Database // Formação</h2>
+      <div class="line"></div>
+      <span class="idx">[ 03 ]</span>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="tl-date">2024 — PRESENTE</div>
+        <div class="tl-title">Desenvolvimento Web Full Stack</div>
+        <div class="tl-org">Nome da Escola / Instituição</div>
+        <p class="tl-desc">Formação completa em desenvolvimento web, cobrindo HTML, CSS, JavaScript, lógica de programação, banco de dados e boas práticas de mercado.</p>
+        <span class="tl-badge">⬛ em andamento</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">2023</div>
+        <div class="tl-title">Certificação em JavaScript Moderno</div>
+        <div class="tl-org">Plataforma Online</div>
+        <p class="tl-desc">Curso avançado de JS com foco em ES6+, assincronismo, APIs e manipulação do DOM.</p>
+        <span class="tl-badge" style="border-color:rgba(0,255,231,0.4);color:var(--neon)">✓ concluído</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">2022</div>
+        <div class="tl-title">Ensino Médio Completo</div>
+        <div class="tl-org">Nome da Escola</div>
+        <p class="tl-desc">Formação básica com ênfase em ciências exatas.</p>
+        <span class="tl-badge" style="border-color:rgba(0,255,231,0.4);color:var(--neon)">✓ diploma obtido</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ CONTATO ═══ -->
+  <section id="contato" class="reveal">
+    <div class="section-label">
+      <h2>Uplink // Contato</h2>
+      <div class="line"></div>
+      <span class="idx">[ 04 ]</span>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:seu@email.com">
+        <div class="contact-icon">✉</div>
+        <div class="contact-info">
+          <div class="contact-type">E-mail</div>
+          <div class="contact-value">seu@email.com</div>
+        </div>
+      </a>
+      <a class="contact-card" href="https://linkedin.com/in/seuperfil" target="_blank">
+        <div class="contact-icon">in</div>
+        <div class="contact-info">
+          <div class="contact-type">LinkedIn</div>
+          <div class="contact-value">linkedin.com/in/seuperfil</div>
+        </div>
+      </a>
+      <a class="contact-card" href="https://github.com/seuperfil" target="_blank">
+        <div class="contact-icon">&lt;/&gt;</div>
+        <div class="contact-info">
+          <div class="contact-type">GitHub</div>
+          <div class="contact-value">github.com/seuperfil</div>
+        </div>
+      </a>
+      <a class="contact-card" href="https://wa.me/55XXXXXXXXXXX" target="_blank">
+        <div class="contact-icon">✆</div>
+        <div class="contact-info">
+          <div class="contact-type">WhatsApp</div>
+          <div class="contact-value">+55 (XX) XXXXX-XXXX</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>// <span>PORTFOLIO</span> :: SEU NOME :: <span>2025</span> :: ALL RIGHTS RESERVED //</p>
+</footer>
+
+<script>
+  // Relógio HUD
+  function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2,'0');
+    const m = String(now.getMinutes()).padStart(2,'0');
+    const s = String(now.getSeconds()).padStart(2,'0');
+    document.getElementById('clock').textContent = h + ':' + m + ':' + s;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // Contador animado
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const duration = 1800;
+    const step = target / (duration / 16);
+    let current = 0;
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        el.textContent = target;
+        clearInterval(timer);
+      } else {
+        el.textContent = Math.floor(current);
+      }
+    }, 16);
+  }
+
+  // Barras de skill animadas
+  function animateBars() {
+    document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+      setTimeout(() => {
+        bar.style.width = bar.dataset.width;
+      }, 300);
+    });
+  }
+
+  // Intersection Observer para reveal + counters + bars
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // counters
+        entry.target.querySelectorAll('.stat-num[data-target]').forEach(animateCounter);
+        // bars
+        entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          setTimeout(() => { bar.style.width = bar.dataset.width; }, 300);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Typing effect no título
+  const titulo = document.querySelector('.hero-title');
+  const textoOriginal = titulo.textContent;
+  titulo.textContent = '';
+  let i = 0;
+  function typeWriter() {
+    if (i < textoOriginal.length) {
+      titulo.textContent += textoOriginal.charAt(i);
+      i++;
+      setTimeout(typeWriter, 45);
+    }
+  }
+  setTimeout(typeWriter, 800);
+</script>
+</body>
+</html>
